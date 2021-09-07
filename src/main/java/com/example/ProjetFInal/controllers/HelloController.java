@@ -47,7 +47,7 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/test")
+    @PostMapping("/test")
     public  JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
         try {
             authenticationManager.authenticate(
