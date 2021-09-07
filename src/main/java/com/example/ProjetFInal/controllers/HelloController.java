@@ -47,7 +47,7 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/test")
+    @PostMapping("/test")
     public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) throws Exception{
         try {
             authenticationManager.authenticate(
