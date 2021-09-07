@@ -56,7 +56,7 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/test")
+    @PostMapping("/login")
     public  ResponseEntity authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
         try {
             System.out.println(utilisateur.getUsername());
