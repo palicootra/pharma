@@ -57,16 +57,20 @@ public class HelloController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
-    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) {
+    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
         try {
+            System.out.println(utilisateur.getUsername());
             authenticationManager.authenticate(
+
                     new UsernamePasswordAuthenticationToken(
                             utilisateur.getUsername(),
                             utilisateur.getPassword()
                     )
+
             );
         }catch (BadCredentialsException e){
-           e.printStackTrace();
+            e.printStackTrace();
+            return new JwtResponse(null,null);
         }
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
