@@ -48,7 +48,7 @@ public class HelloController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/test")
-    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) throws Exception{
+    public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) throws Exception{
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -64,7 +64,8 @@ public class HelloController {
         final String token =
                 jwtUtility.generateToken(userDetails);
         Utilisateur logU = userService.findUser(utilisateur.getUsername());
-        return new JwtResponse(token,logU);
+        //return new JwtResponse(token,logU);
+        return new ResponseEntity<>(token, HttpStatus.OK);
 
     }
 
