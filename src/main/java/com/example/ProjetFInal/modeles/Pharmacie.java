@@ -17,7 +17,7 @@ public class Pharmacie {
     private String id;
     private String nom_phar;
     private String email_phar;
-    private Integer tel_phar;
+    private String tel_phar;
     private String statu_phar;
     private Adresse adresse;
 
