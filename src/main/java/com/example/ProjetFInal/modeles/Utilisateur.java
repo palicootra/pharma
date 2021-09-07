@@ -22,7 +22,7 @@ public class Utilisateur {
     private String password;
     @Indexed(unique=true)
     private String email ;
-    private Integer userphone ;
+    private String userphone ;
     private Integer etatuser ;
     private Boolean satutuser ;
     private Adresse adresse;
