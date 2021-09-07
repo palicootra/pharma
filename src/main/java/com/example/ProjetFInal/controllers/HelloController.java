@@ -42,8 +42,14 @@ public class HelloController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/createUser")
     public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
-        Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
-        return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
+       try {
+           Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
+           return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
+       }catch (Exception e){
+           e.printStackTrace();
+           return new ResponseEntity<>("cet utilisateur existe déja", HttpStatus.CONFLICT);
+       }
+
     }
 
     @CrossOrigin(origins = "*")
