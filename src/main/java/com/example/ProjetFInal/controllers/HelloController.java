@@ -40,23 +40,20 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/createUser")
-    public ResponseEntity<?> create(){
+    @PostMapping("/createUser")
+    public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
         Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
         return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/test")
-    public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) {
+    @GetMapping("/test")
+    public  ResponseEntity<?> authenticate() {
 
-        final UserDetails userDetails
-                = userService.loadUserByUsername(utilisateur.getUsername());
-        final String token =
-                jwtUtility.generateToken(userDetails);
-        Utilisateur logU = userService.findUser(utilisateur.getUsername());
+
+
         //return new JwtResponse(token,logU);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>("ggggggggggg", HttpStatus.OK);
 
     }
 
