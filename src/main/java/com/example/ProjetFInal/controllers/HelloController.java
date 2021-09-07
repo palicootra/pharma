@@ -57,7 +57,7 @@ public class HelloController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
-    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
+    public  ResponseEntity authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
         try {
             System.out.println(utilisateur.getUsername());
             authenticationManager.authenticate(
@@ -70,14 +70,16 @@ public class HelloController {
             );
         }catch (BadCredentialsException e){
             e.printStackTrace();
-            return new JwtResponse(null,null);
+            return new ResponseEntity<>("bad credentials", HttpStatus.NOT_FOUND);
+           // return new JwtResponse(null,null);
         }
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
         final String token =
                 jwtUtility.generateToken(userDetails);
         Utilisateur logU = userService.findUser(utilisateur.getUsername());
-        return new JwtResponse(token,logU);
+        return new ResponseEntity<>(new JwtResponse(token,logU), HttpStatus.OK);
+
         //return new ResponseEntity<>(token, HttpStatus.OK);
 
     }
