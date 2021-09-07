@@ -35,24 +35,24 @@ public class AuthController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/authenticate")
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
+    public JwtResponse authenticate(@RequestBody JwtRequest utilisateur) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getUsername(),
-                            jwtRequest.getPassword()
+                            utilisateur.getUsername(),
+                            utilisateur.getPassword()
                     )
             );
         }catch (BadCredentialsException e){
-            throw  new Exception("INVALID_CREDENTIAL",e);
+            e.printStackTrace();
         }
         final UserDetails userDetails
-                = userService.loadUserByUsername(jwtRequest.getUsername());
+                = userService.loadUserByUsername(utilisateur.getUsername());
         final String token =
                 jwtUtility.generateToken(userDetails);
-Utilisateur logU = userService.findUser(jwtRequest.getUsername());
-        return new  JwtResponse(token,logU);
+        Utilisateur logU = userService.findUser(utilisateur.getUsername());
+        return new JwtResponse(token,logU);
     }
 }

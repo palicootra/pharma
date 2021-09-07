@@ -40,7 +40,7 @@ public class HelloController {
         return utilisateurRepository.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/createUser")
     public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
        try {
