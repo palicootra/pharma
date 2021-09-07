@@ -47,23 +47,23 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/test")
-    public  JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
+    @GetMapping("/test")
+    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) throws Exception{
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getUsername(),
-                            jwtRequest.getPassword()
+                            utilisateur.getUsername(),
+                            utilisateur.getPassword()
                     )
             );
         }catch (BadCredentialsException e){
             throw  new Exception("INVALID_CREDENTIAL",e);
         }
         final UserDetails userDetails
-                = userService.loadUserByUsername(jwtRequest.getUsername());
+                = userService.loadUserByUsername(utilisateur.getUsername());
         final String token =
                 jwtUtility.generateToken(userDetails);
-        Utilisateur logU = userService.findUser(jwtRequest.getUsername());
+        Utilisateur logU = userService.findUser(utilisateur.getUsername());
         return new JwtResponse(token,logU);
 
     }
