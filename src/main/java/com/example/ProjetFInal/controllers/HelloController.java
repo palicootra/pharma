@@ -48,16 +48,24 @@ public class HelloController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
-    public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) {
-        System.out.println(utilisateur.getUsername());
-
+    public  JwtResponse authenticate(@RequestBody Utilisateur utilisateur) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            utilisateur.getUsername(),
+                            utilisateur.getPassword()
+                    )
+            );
+        }catch (BadCredentialsException e){
+           e.printStackTrace();
+        }
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
         final String token =
                 jwtUtility.generateToken(userDetails);
         Utilisateur logU = userService.findUser(utilisateur.getUsername());
-        //return new JwtResponse(token,logU);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new JwtResponse(token,logU);
+        //return new ResponseEntity<>(token, HttpStatus.OK);
 
     }
 
