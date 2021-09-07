@@ -40,25 +40,16 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/createUser")
-    public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
+    @GetMapping("/createUser")
+    public ResponseEntity<?> create(){
         Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
         return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
-    public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) throws Exception{
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            utilisateur.getUsername(),
-                            utilisateur.getPassword()
-                    )
-            );
-        }catch (BadCredentialsException e){
-            throw  new Exception("INVALID_CREDENTIAL",e);
-        }
+    public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) {
+
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
         final String token =
