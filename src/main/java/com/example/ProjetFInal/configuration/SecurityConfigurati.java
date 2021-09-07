@@ -40,11 +40,12 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.cors().disable();
 
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate","/lol","/all","/createUser")
+                .antMatchers("/authenticate","/all","/createUser","swagger-ui.html")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -52,6 +53,7 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
 
     }
 }

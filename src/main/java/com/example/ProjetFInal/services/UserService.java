@@ -27,4 +27,9 @@ public class UserService implements UserDetailsService {
         String pwd = finduser.getPassword();
         return new User(name,pwd,new ArrayList<>());
     }
+
+
+    public Utilisateur findUser(String name){
+        return utilisateurRepository.findByUsername(name);
+    }
 }

@@ -4,6 +4,8 @@ package com.example.ProjetFInal.controllers;
 import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,15 +16,17 @@ public class HelloController {
     @Autowired
     public UtilisateurRepository utilisateurRepository;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping ("/all")
     public List<Utilisateur> getAllUsers(){
         return utilisateurRepository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/createUser")
-    public String create(@RequestBody Utilisateur utilisateur){
+    public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
         Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
-        return insertuser.toString();
+        return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
     }
 
 
