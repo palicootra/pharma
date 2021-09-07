@@ -20,7 +20,6 @@ public class Medicament {
     @Id
     private String id;
     private String code_cip;
-    @Indexed(unique=true)
     private  String nom_medoc;
     private Forme forme;
     private  String dosage_medoc;
