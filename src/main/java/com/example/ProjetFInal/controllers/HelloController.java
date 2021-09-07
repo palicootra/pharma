@@ -70,7 +70,7 @@ public class HelloController {
             );
         }catch (BadCredentialsException e){
             e.printStackTrace();
-            return new ResponseEntity<>(new Result("bad credentials",401), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Result("bad credentials",401), HttpStatus.UNAUTHORIZED);
            // return new JwtResponse(null,null);
         }
         final UserDetails userDetails
