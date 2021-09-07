@@ -36,9 +36,9 @@ public class MedicamentController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addMedoc")
-    private String create(@RequestBody Medicament medicament){
+    private ResponseEntity create(@RequestBody Medicament medicament){
         Medicament medicament1 = medicamentService.create(medicament);
-        return medicament1.toString();
+        return new ResponseEntity<>(medicament1, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
