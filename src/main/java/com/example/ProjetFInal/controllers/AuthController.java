@@ -37,7 +37,7 @@ public class AuthController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/authenticate")
-    public JwtResponse authenticate(@RequestBody JwtRequest utilisateur) {
+    public JwtResponse authenticate(@RequestBody JwtRequest utilisateur) throws BadCredentialsException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -47,6 +47,7 @@ public class AuthController {
             );
         }catch (BadCredentialsException e){
             e.printStackTrace();
+            throw new BadCredentialsException("Bad credentials");
         }
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
