@@ -3,6 +3,7 @@ package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.JwtRequest;
 import com.example.ProjetFInal.modeles.JwtResponse;
+import com.example.ProjetFInal.modeles.Result;
 import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
 import com.example.ProjetFInal.services.UserService;
@@ -47,7 +48,9 @@ public class HelloController {
            return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
        }catch (Exception e){
            e.printStackTrace();
-           return new ResponseEntity<>("cet utilisateur existe déja", HttpStatus.CONFLICT);
+           Result response = new Result("cet utilisateur existe déja", 409);
+
+           return new ResponseEntity<>(response, HttpStatus.CONFLICT);
        }
 
     }
