@@ -49,6 +49,7 @@ public class HelloController {
     @CrossOrigin(origins = "*")
     @PostMapping("/test")
     public  ResponseEntity<?> authenticate(@RequestBody Utilisateur utilisateur) {
+        System.out.println(utilisateur.getUsername());
 
         final UserDetails userDetails
                 = userService.loadUserByUsername(utilisateur.getUsername());
