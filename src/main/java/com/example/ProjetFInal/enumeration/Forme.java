@@ -4,7 +4,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 public enum Forme {
-    CIRO,
+    SIROP,
+    POUDRE,
     COMPRIME ;
 
 
