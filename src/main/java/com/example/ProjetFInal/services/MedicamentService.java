@@ -20,5 +20,6 @@ public class MedicamentService {
     }
     public List<Medicament> getName(String nom_medoc){return  medicamentReposotory.findByNom_medoc(nom_medoc);}
     public List<Medicament> getTag(String tag) {return medicamentReposotory.findAllByTag(tag);}
+    public List<Medicament> getAll() {return medicamentReposotory.findAll();}
 
 }

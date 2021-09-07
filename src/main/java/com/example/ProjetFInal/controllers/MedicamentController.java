@@ -83,6 +83,6 @@ public class MedicamentController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/findAllMedoc")
-    private List<Medicament> getAll(String tag){return medicamentService.getTag( tag);}
+    private List<Medicament> getAll(){return medicamentService.getAll();}
 
 }
