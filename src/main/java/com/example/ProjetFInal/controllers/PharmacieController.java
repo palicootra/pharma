@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Pharmacie")
+@RequestMapping("/pharmacie")
 public class PharmacieController {
     @Autowired
     private PharmacieService pharmacieService;
@@ -23,7 +23,7 @@ public class PharmacieController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Pharmacie>> getAll(){
         List<Pharmacie> pharmacies = pharmacieService.getAll();
         return new ResponseEntity<>(pharmacies, HttpStatus.OK);
