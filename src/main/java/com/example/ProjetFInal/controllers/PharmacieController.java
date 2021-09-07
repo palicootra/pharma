@@ -17,14 +17,14 @@ public class PharmacieController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addPharma")
-    private  ResponseEntity create(@RequestBody Pharmacie pharmacie){
+    public  ResponseEntity create(@RequestBody Pharmacie pharmacie){
         Pharmacie pharmacie1 = pharmacieService.create(pharmacie);
         return new ResponseEntity<>(pharmacie1, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/findAll")
-    private ResponseEntity<List<Pharmacie>> getAll(){
+    public ResponseEntity<List<Pharmacie>> getAll(){
         List<Pharmacie> pharmacies = pharmacieService.getAll();
         return new ResponseEntity<>(pharmacies, HttpStatus.OK);
     }
