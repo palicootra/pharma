@@ -55,7 +55,7 @@ public class HelloController {
 
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public  ResponseEntity authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
         try {
