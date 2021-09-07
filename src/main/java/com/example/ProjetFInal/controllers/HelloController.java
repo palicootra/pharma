@@ -29,6 +29,14 @@ public class HelloController {
         return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/test")
+    public ResponseEntity<?> test(){
+        String response = "test ok";
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
 
 
 }
