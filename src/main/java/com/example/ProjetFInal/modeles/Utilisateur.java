@@ -7,6 +7,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.Date;
+import java.util.List;
 
 @Document( "utilisateur")
 @Data
@@ -27,6 +31,8 @@ public class Utilisateur {
     private Boolean satutuser ;
     private Adresse adresse;
     private String id_pharma;
+    private Date created_at;
+    private List<String>  roles;
 
 
 }

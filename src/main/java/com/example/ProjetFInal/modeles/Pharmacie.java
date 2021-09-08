@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 @Document("pharmacies")
 @Data
 @NoArgsConstructor
@@ -20,6 +22,7 @@ public class Pharmacie {
     private String tel_phar;
     private String statu_phar;
     private Adresse adresse;
+    private Date created_at;
 
 
 }

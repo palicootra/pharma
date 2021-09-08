@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 
 @Document("sorties")
 @Data
@@ -16,7 +18,7 @@ public class Sortie {
 
     @Id
     private String id;
-    private String date_sort;
+    private Date date_sort;
     private Integer qte_sort;
     private String id_medoc;
     private String id_pharmacie;

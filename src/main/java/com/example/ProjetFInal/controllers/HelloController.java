@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,10 @@ public class HelloController {
     @PostMapping("/createUser")
     public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
        try {
+           utilisateur.setEtatuser(1);
+           utilisateur.setSatutuser(true);
+           utilisateur.getRoles().add("USER");
+
            Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
            return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
        }catch (Exception e){

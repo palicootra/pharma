@@ -44,7 +44,9 @@ public class MedicamentController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/findMedoc")
     private ResponseEntity<List<Pharmacie>>  findMedoc(@RequestParam String nom_medoc){
+
         List<Medicament> medicaments = medicamentService.getName(nom_medoc);
+        System.out.println(medicaments.size());
         List<Pharmacie> pharmacies = null;
         if (medicaments.isEmpty()){
             Tag tag=tagService.getByLibele(nom_medoc);

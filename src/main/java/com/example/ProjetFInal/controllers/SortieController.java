@@ -23,9 +23,9 @@ public class SortieController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addSortie")
-    private String getall(@RequestBody Sortie sortie){
+    private ResponseEntity getall(@RequestBody Sortie sortie){
         Sortie sortie1 = sortieService.create(sortie);
-        return sortie1.toString();
+        return new ResponseEntity<>(sortie1, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

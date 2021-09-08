@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
 import java.util.List;
 
 @Document("medicament")
@@ -28,7 +29,7 @@ public class Medicament {
     private  String marque_medoc;
     private List<String> categories;
     private List<String> tag;
-
+    private Date created_at;
 
 
 }

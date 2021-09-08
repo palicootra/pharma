@@ -31,5 +31,5 @@ public class Lot {
     private String id_medicament;
     private String id_pharmacie;
     private String id_utilisateur;
-
+    private Date created_at;
 }
