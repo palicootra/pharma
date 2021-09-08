@@ -47,8 +47,7 @@ public class HelloController {
        try {
            utilisateur.setEtatuser(1);
            utilisateur.setSatutuser(true);
-           if(utilisateur.getRoles()!=null)
-           utilisateur.getRoles().add("USER");
+
 
            Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
            return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
