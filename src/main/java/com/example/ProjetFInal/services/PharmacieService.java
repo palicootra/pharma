@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PharmacieService {
@@ -18,7 +19,7 @@ public class PharmacieService {
         return  pharmacieRepository.insert(pharmacie);
     }
     public List<Pharmacie> getAll(){return pharmacieRepository.findAll();}
-    public Pharmacie getPharma(@RequestParam String id){
-        return pharmacieRepository.findPharmacieById(id);
+    public Optional<Pharmacie> getPharma(@RequestParam String id){
+        return pharmacieRepository.findById(id);
     }
 }

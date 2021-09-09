@@ -32,4 +32,5 @@ public class UserService implements UserDetailsService {
     public Utilisateur findUser(String name){
         return utilisateurRepository.findByUsername(name);
     }
+
 }
