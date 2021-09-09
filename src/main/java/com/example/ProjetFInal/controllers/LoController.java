@@ -20,6 +20,7 @@ public class LoController {
     @CrossOrigin(origins ="http://localhost:4200")
     @PostMapping("/addLot")
     private String create( @RequestBody  Lot lot){
+        //qte doit prendre qte de depart
         Lot lot1 = lotService.create(lot);
         return lot1.toString();
     }

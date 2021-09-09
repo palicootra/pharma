@@ -3,6 +3,7 @@ package com.example.ProjetFInal.modeles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,10 +22,13 @@ public class Utilisateur {
     @Id
     private String id ;
     @Indexed(unique=true)
+    @NotNull
     private String username;
     private String firstname;
+    @NotNull
     private String password;
     @Indexed(unique=true)
+    @NotNull
     private String email ;
     private String userphone ;
     private Integer etatuser ;

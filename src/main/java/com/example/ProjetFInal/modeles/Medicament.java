@@ -28,6 +28,7 @@ public class Medicament {
     private  String conditionnement_medoc;
     private  String marque_medoc;
     private  String id_pharmacie;
+    private  String added_by;
     private  int last_price;
     private List<String> categories;
     private List<String> tag;
