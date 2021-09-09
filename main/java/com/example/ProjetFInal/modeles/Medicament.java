@@ -6,11 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Date;
 import java.util.List;
 
 @Document("medicament")
@@ -27,11 +25,9 @@ public class Medicament {
     private  String notice_medoc;
     private  String conditionnement_medoc;
     private  String marque_medoc;
-    private  String id_pharmacie;
-    private  int last_price;
     private List<String> categories;
     private List<String> tag;
-    private Date created_at;
+
 
 
 }

@@ -89,6 +89,37 @@ public class HelloController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/updateUser")
+    public ResponseEntity deleteCat(@RequestBody Utilisateur utilisateur){
+        Utilisateur utilisateur1 = utilisateurRepository.findById(utilisateur.getId())
+                .orElseThrow(()-> new RuntimeException(String.format("nous ne trouvons pas l'utilisateur pour id: %s",utilisateur.getId())));
+        utilisateur1.setUsername(utilisateur.getUsername());
+        utilisateur1.setFirstname(utilisateur.getFirstname());
+        utilisateur1.setPassword(utilisateur.getPassword());
+        utilisateur1.setEmail(utilisateur.getEmail());
+        utilisateur1.setUserphone(utilisateur.getUserphone());
+        utilisateur1.setSatutuser(utilisateur.getSatutuser());
+        utilisateur1.setId_pharma(utilisateur.getId_pharma());
+        utilisateur1.getAdresse().setPays(utilisateur.getAdresse().getPays());
+        utilisateur1.getAdresse().setVille(utilisateur.getAdresse().getVille());
+        utilisateur1.getAdresse().setRegion(utilisateur.getAdresse().getRegion());
+        utilisateur1.getAdresse().setDepartement(utilisateur.getAdresse().getDepartement());
+        utilisateur1.getAdresse().setLongitude(utilisateur.getAdresse().getLongitude());
+        utilisateur1.getAdresse().setLatitude(utilisateur.getAdresse().getLatitude());
+        utilisateur1.getAdresse().setCode_postal(utilisateur.getAdresse().getCode_postal());
+        utilisateurRepository.save(utilisateur1);
+        return ResponseEntity.ok().build();
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping ("/deleteUser")
+    public ResponseEntity<String> delete(@RequestParam String id_user){
+        utilisateurRepository.deleteById(id_user);
+        String supp = "supression effectué";
+        return new ResponseEntity<>(supp, HttpStatus.OK);
+    }
+
+
 
 
 }
