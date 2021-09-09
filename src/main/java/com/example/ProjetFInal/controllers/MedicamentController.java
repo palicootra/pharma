@@ -60,7 +60,7 @@ public class MedicamentController {
                     List<Lot> lots = lotService.getBiIdMedicament(medoc.getId());
                     for (Lot lot:lots
                     ) {
-                        pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
+                        //pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
                         System.out.println(pharmacies);
 
                     }
@@ -75,7 +75,7 @@ public class MedicamentController {
                 List<Lot> lots = lotService.getBiIdMedicament(medoc.getId());
                 for (Lot lot:lots
                 ) {
-                     pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
+                    // pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
                      System.out.println(pharmacies);
                 }
             }

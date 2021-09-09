@@ -15,5 +15,5 @@ import java.util.List;
 public interface PharmacieRepository extends MongoRepository<Pharmacie,String> {
     @Query("{'nom_phar' : ?0 }")
     Pharmacie findByNom_phar(String nom_phar);
-    List<Pharmacie> findPharmacieById(String id);
+    Pharmacie findPharmacieById(String id);
 }

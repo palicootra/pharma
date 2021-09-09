@@ -1,11 +1,9 @@
 package com.example.ProjetFInal.controllers;
 
 
-import com.example.ProjetFInal.modeles.JwtRequest;
-import com.example.ProjetFInal.modeles.JwtResponse;
-import com.example.ProjetFInal.modeles.Result;
-import com.example.ProjetFInal.modeles.Utilisateur;
+import com.example.ProjetFInal.modeles.*;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
+import com.example.ProjetFInal.services.PharmacieService;
 import com.example.ProjetFInal.services.UserService;
 import com.example.ProjetFInal.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,27 +16,46 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class HelloController {
     private final JWTUtility jwtUtility;
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
+    private final PharmacieService pharmacieService;
+
     @Autowired
     public UtilisateurRepository utilisateurRepository;
 
-    public HelloController(JWTUtility jwtUtility, AuthenticationManager authenticationManager, UserService userService) {
+    public HelloController(JWTUtility jwtUtility,PharmacieService pharmacieService,
+                           AuthenticationManager authenticationManager, UserService userService) {
 
             this.jwtUtility = jwtUtility;
             this.authenticationManager = authenticationManager;
             this.userService = userService;
+            this.pharmacieService = pharmacieService;
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping ("/all")
-    public List<Utilisateur> getAllUsers(){
-        return utilisateurRepository.findAll();
+    public ResponseEntity<Object> getAllUsers(){
+        List<Utilisateur> users = utilisateurRepository.findAll();
+        HashSet<Pharmacie> pharmacies = new HashSet<>();
+        for (Utilisateur user :users) {
+            if( user.getId_pharma() == null || user.getId_pharma().trim().length() == 0 ){
+                pharmacies.add(this.pharmacieService.getPharma(user.getId_pharma())) ;
+            }
+
+        }
+        ArrayList<Object> response = new ArrayList<>();
+        response.add(users);
+        response.add(pharmacies);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "*")

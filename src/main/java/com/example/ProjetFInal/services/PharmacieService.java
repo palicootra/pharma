@@ -18,7 +18,7 @@ public class PharmacieService {
         return  pharmacieRepository.insert(pharmacie);
     }
     public List<Pharmacie> getAll(){return pharmacieRepository.findAll();}
-    public List<Pharmacie> getPharma(@RequestParam String id){
+    public Pharmacie getPharma(@RequestParam String id){
         return pharmacieRepository.findPharmacieById(id);
     }
 }
