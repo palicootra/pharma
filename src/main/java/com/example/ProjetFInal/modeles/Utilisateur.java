@@ -1,5 +1,6 @@
 package com.example.ProjetFInal.modeles;
 
+import com.mongodb.lang.NonNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,13 +23,13 @@ public class Utilisateur {
     @Id
     private String id ;
     @Indexed(unique=true)
-    @NotNull
+    @NonNull
     private String username;
     private String firstname;
-    @NotNull
+    @NonNull
     private String password;
     @Indexed(unique=true)
-    @NotNull
+    @NonNull
     private String email ;
     private String userphone ;
     private Integer etatuser ;
