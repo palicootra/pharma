@@ -15,10 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class HelloController {
@@ -47,6 +44,7 @@ public class HelloController {
         HashSet<Pharmacie> pharmacies = new HashSet<>();
         for (Utilisateur user :users) {
             if( user.getId_pharma() == null || user.getId_pharma().trim().length() == 0 ){
+                System.out.println(user.getId_pharma());
                 pharmacies.add(this.pharmacieService.getPharma(user.getId_pharma())) ;
             }
 
@@ -64,6 +62,7 @@ public class HelloController {
        try {
            utilisateur.setEtatuser(1);
            utilisateur.setSatutuser(true);
+           utilisateur.setCreated_at(new Date());
 
 
            Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
