@@ -14,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/Sortie")
@@ -96,10 +93,19 @@ public class SortieController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/getByPharmacie/{id_pharmacie}")
-    private List<Sortie> findById_pharmacie(@PathVariable String id_pharmacie){
-        List<Sortie> sortiepharma = sortieService.findById_pharmacie(id_pharmacie);
-        if (sortiepharma.isEmpty()) throw new SortieIntrouvaleException("Le cette liste est vide aucune vente pour cete oharmacie ");
-        return sortiepharma;
+    private ResponseEntity<Object> findById_pharmacie(@PathVariable String id_pharmacie){
+        List<Sortie> sorties = sortieService.findById_pharmacie(id_pharmacie);
+        HashSet<Medicament> medicaments = new HashSet<>();
+        for (Sortie sortie :sorties) {
+            if( sortie.getId_medoc() != null && sortie.getId_medoc() .trim().length() != 0 ){
+                medicaments.add(this.medicamentService.getById(sortie.getId_medoc()).get()) ;
+            }
+
+        }
+        ArrayList<Object> response = new ArrayList<>();
+        response.add(sorties);
+        response.add(medicaments);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
