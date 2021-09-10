@@ -21,7 +21,7 @@ public class Lot {
 
     @Id
     private String id;
-    @Indexed(unique=true)
+
     private String num_lot;
     private Integer qte_lot;
     private Date datein_lot;
