@@ -40,12 +40,13 @@ public class SortieController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addSortie")
-    private ResponseEntity addSortie(@RequestBody Sortie sortie){
+    private ResponseEntity<Object> addSortie(@RequestBody Sortie sortie){
         int quantity = 0;
-        List <String>id_lots= new ArrayList();
+        List <String>id_lots= new ArrayList<>();
         System.out.println(sortie.getId_medoc());
         //Medicament medicament = this.medicamentService.getById(sortie.getId_medoc()).get();
         List<Lot> lots = this.lotService.getBiIdMedicament(sortie.getId_medoc());
+        System.out.println(lots.size() );
         lots.removeIf(lot -> !(lot.getQte_lot() > 0));
         for (int i = 1; i <sortie.getQte_sort(); i++) {
             if(lots.size()> 0){
