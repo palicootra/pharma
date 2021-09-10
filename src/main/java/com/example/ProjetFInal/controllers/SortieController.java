@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class SortieController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addSortie")
     private String getall(@RequestBody Sortie sortie){
+        sortie.setDate_sort(new Date());
         Sortie sortie1 = sortieService.create(sortie);
         return sortie1.toString();
     }

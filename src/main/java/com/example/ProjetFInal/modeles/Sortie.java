@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Document("sorties")
@@ -22,7 +23,7 @@ public class Sortie {
     private Integer qte_sort;
     private String id_medoc;
     private String id_pharmacie;
-    private String id_lot;
+    private List<String> id_lots;
     private float total_amount;
     private float unit_price;
     private String payment_method;
