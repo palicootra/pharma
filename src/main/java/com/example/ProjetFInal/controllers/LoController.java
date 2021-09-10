@@ -2,14 +2,19 @@ package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.Lot;
 import com.example.ProjetFInal.modeles.Medicament;
+import com.example.ProjetFInal.modeles.Pharmacie;
+import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
+import com.example.ProjetFInal.services.PharmacieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -17,11 +22,14 @@ import java.util.List;
 public class LoController {
     private final LotService lotService;
     private final MedicamentService medicamentService;
+    private final PharmacieService pharmacieService;
 
     @Autowired
-    public LoController(LotService lotService,MedicamentService medicamentService) {
+    public LoController(LotService lotService, PharmacieService pharmacieService,
+                        MedicamentService medicamentService) {
         this.lotService = lotService;
         this.medicamentService = medicamentService;
+        this.pharmacieService = pharmacieService;
     }
 
     @CrossOrigin(origins ="http://localhost:4200")
@@ -47,7 +55,29 @@ public class LoController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/allLot")
-    private List<Lot> gatAll(){return lotService.getAll();
+    private ResponseEntity<Object> gatAll(){
+        List<Lot> lots = lotService.getAll();
+        HashSet<Pharmacie> pharmacies = new HashSet<>();
+        for (Lot lot :lots) {
+            if( lot.getId_pharmacie() != null && lot.getId_pharmacie().trim().length() != 0 ){
+                System.out.println(lot.getId_pharmacie());
+                pharmacies.add(this.pharmacieService.getPharma(lot.getId_pharmacie()).get(0)) ;
+            }
+
+        }
+        HashSet<Medicament> medicaments = new HashSet<>();
+        for (Lot lot :lots) {
+            if( lot.getId_medicament() != null && lot.getId_medicament().trim().length() != 0 ){
+                System.out.println(lot.getId_medicament());
+                medicaments.add(this.medicamentService.getById(lot.getId_medicament()).get()) ;
+            }
+
+        }
+        ArrayList<Object> response = new ArrayList<>();
+        response.add(lots);
+        response.add(pharmacies);
+        response.add(medicaments);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

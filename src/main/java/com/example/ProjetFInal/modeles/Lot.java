@@ -32,5 +32,6 @@ public class Lot {
     private String id_medicament;
     private String id_pharmacie;
     private String id_utilisateur;
+    private boolean archived;
     private Date created_at;
 }
