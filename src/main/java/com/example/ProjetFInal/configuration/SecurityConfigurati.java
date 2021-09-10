@@ -47,7 +47,7 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/authenticate","/all","/addLot","/lot/addLot",
                         "/pharmacie/findAll","/findAll","/addPharma","/pharmacie/addPharma",
-                        "/findMedoc","/medicament/findMedoc",
+                        "/findMedoc","/medicament/findMedoc","/findAllMedoc","/medicament/findAllMedoc",
                         "/createUser","/medicament/addMedoc","/addMedoc",
                         "/swagger-ui.html","/login")
                 .permitAll()
