@@ -45,10 +45,10 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate","/all","/medicament/findAllMedoc",
+                .antMatchers("/authenticate","/all",
                         "/pharmacie/findAll","/findAll","/addPharma","/pharmacie/addPharma",
                         "/findMedoc","/medicament/findMedoc",
-                        "/createUser","/medicament/addMedoc","/addMedoc","/findAllMedoc",
+                        "/createUser","/medicament/addMedoc","/addMedoc",
                         "/swagger-ui.html","/login")
                 .permitAll()
                 .anyRequest()
