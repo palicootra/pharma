@@ -36,7 +36,7 @@ public class SortieController {
         this.pharmacieService = pharmacieService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addSortie")
     private ResponseEntity<Object> addSortie(@RequestBody Sortie sortie){
         int quantity = 0;
@@ -85,7 +85,7 @@ public class SortieController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findSortie/{id}")
     private  ResponseEntity<?> getId(@PathVariable String id){
         Optional<Sortie> sortie = sortieService.getId(id);
@@ -109,20 +109,20 @@ public class SortieController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getByMedoc/{id_medoc}")
     private List<Sortie> findById_medoc(@PathVariable String id_medoc){
         return sortieService.findById_medoc(id_medoc);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllSortie")
     private List<Sortie> getAll(){
         return sortieService.getAll();
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateSortie")
     public ResponseEntity updateSortie(@RequestBody Sortie sortie){
 
@@ -136,7 +136,7 @@ public class SortieController {
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @DeleteMapping ("/deleteSortie")
     public ResponseEntity<String> delete(@RequestParam String id_sort){
         sortieService.deleteSortie(id_sort);

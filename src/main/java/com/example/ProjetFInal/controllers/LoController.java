@@ -32,7 +32,7 @@ public class LoController {
         this.pharmacieService = pharmacieService;
     }
 
-    @CrossOrigin(origins ="http://localhost:4200")
+    @CrossOrigin(origins ="*")
     @PostMapping("/addLot")
     private ResponseEntity <Object>create( @RequestBody  Lot lot){
         lot.setCreated_at(new Date());
@@ -47,13 +47,13 @@ public class LoController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getLot")
     private Lot getNum(String num_lot){
         return lotService.getNum(num_lot);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/allLot")
     private ResponseEntity<Object> gatAll(){
         List<Lot> lots = lotService.getAll();
@@ -80,20 +80,20 @@ public class LoController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/allPharmaLot")
     private List<Lot> getByIdPharma(@PathVariable String id_pharma){
         return lotService.getByIdPharma(id_pharma);
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/allMedicamentLot")
     private List<Lot> getBiIdMedicament(@PathVariable String id_medicament){
         return lotService.getBiIdMedicament(id_medicament);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateLot")
     public ResponseEntity updateLot(@RequestBody Lot lot){
         Lot lot1 = lotService.getID(lot.getId())
@@ -111,7 +111,7 @@ public class LoController {
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @DeleteMapping ("/deleteLot")
     public ResponseEntity<String> delete(@RequestParam String id_lot){
         lotService.deleteLot(id_lot);

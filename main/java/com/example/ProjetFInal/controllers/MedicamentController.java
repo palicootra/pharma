@@ -34,14 +34,14 @@ public class MedicamentController {
         this.pharmacieService = pharmacieService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addMedoc")
     private String create(@RequestBody Medicament medicament){
         Medicament medicament1 = medicamentService.create(medicament);
         return medicament1.toString();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findMedoc")
     private ResponseEntity<List<Pharmacie>>  findMedoc(@RequestParam String nom_medoc){
         List<Medicament> medicaments = medicamentService.getName(nom_medoc);
@@ -81,7 +81,7 @@ public class MedicamentController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllMedoc")
     private List<Medicament> getAll(String tag){return medicamentService.getTag( tag);}
 

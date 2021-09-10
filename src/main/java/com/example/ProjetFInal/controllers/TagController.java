@@ -16,7 +16,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addTag")
     private String create(@RequestBody Tag tag){
         Tag tag1 = tagService.create(tag);
@@ -24,7 +24,7 @@ public class TagController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllTag")
     private List<Tag> getAll(){return tagService.getAll();}
 }

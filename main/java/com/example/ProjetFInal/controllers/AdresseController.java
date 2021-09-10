@@ -11,7 +11,7 @@ public class AdresseController {
     @Autowired
     private AdresseRepository adresseRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addAdresse")
     public String create(@RequestBody Adresse adresse){
         Adresse adresse1 = adresseRepository.insert(adresse);

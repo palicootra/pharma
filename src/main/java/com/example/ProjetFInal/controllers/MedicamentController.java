@@ -35,7 +35,7 @@ public class MedicamentController {
         this.pharmacieService = pharmacieService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addMedoc")
     private ResponseEntity create(@RequestBody Medicament medicament){
         medicament.setCreated_at(new Date());
@@ -43,7 +43,7 @@ public class MedicamentController {
         return new ResponseEntity<>(medicament1, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findMedoc")
     private ResponseEntity<List<Pharmacie>>  findMedoc(@RequestParam String nom_medoc){
 
@@ -85,7 +85,7 @@ public class MedicamentController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllMedoc")
     public ResponseEntity  getAll(){
         List<Medicament> medicaments = medicamentService.getAll();

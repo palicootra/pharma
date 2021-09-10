@@ -16,7 +16,7 @@ public class CatController {
     @Autowired
     private CatService catService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addCat")
     private String create(@RequestBody Categories categories){
         Categories categories1 = catService.create(categories);
@@ -24,7 +24,7 @@ public class CatController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllCat")
     private List<Categories> getAll(){
         List<Categories> alCat=  catService.getAll();

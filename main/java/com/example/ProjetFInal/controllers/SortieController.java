@@ -23,21 +23,21 @@ public class SortieController {
         this.sortieService = sortieService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addSortie")
     private String getall(@RequestBody Sortie sortie){
         Sortie sortie1 = sortieService.create(sortie);
         return sortie1.toString();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findSortie/{id}")
     private  ResponseEntity<?> getId(@PathVariable String id){
         Optional<Sortie> sortie = sortieService.getId(id);
         return new ResponseEntity<>(sortie, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getByPharmacie/{id_pharmacie}")
     private List<Sortie> findById_pharmacie(@PathVariable String id_pharmacie){
              List<Sortie> sortiepharma = sortieService.findById_pharmacie(id_pharmacie);
@@ -45,20 +45,20 @@ public class SortieController {
         return sortiepharma;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getByMedoc/{id_medoc}")
     private List<Sortie> findById_medoc(@PathVariable String id_medoc){
         return sortieService.findById_medoc(id_medoc);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/findAllSortie")
     private List<Sortie> getAll(){
         return sortieService.getAll();
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateSortie")
     public ResponseEntity updateSortie(@RequestBody Sortie sortie){
 
@@ -72,7 +72,7 @@ public class SortieController {
         return ResponseEntity.ok().build();
             }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @DeleteMapping ("/deleteSortie")
     public ResponseEntity<String> delete(@RequestParam String id_sort){
         sortieService.deleteSortie(id_sort);

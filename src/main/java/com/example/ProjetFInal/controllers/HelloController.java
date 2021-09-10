@@ -37,7 +37,7 @@ public class HelloController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping ("/all")
     public ResponseEntity<Object> getAllUsers(){
         List<Utilisateur> users = utilisateurRepository.findAll();
@@ -76,7 +76,7 @@ public class HelloController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public  ResponseEntity authenticate(@RequestBody Utilisateur utilisateur) throws BadCredentialsException {
         try {
@@ -105,7 +105,7 @@ public class HelloController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateUser")
     public ResponseEntity deleteCat(@RequestBody Utilisateur utilisateur){
         Utilisateur utilisateur1 = utilisateurRepository.findById(utilisateur.getId())
@@ -127,7 +127,7 @@ public class HelloController {
         utilisateurRepository.save(utilisateur1);
         return ResponseEntity.ok().build();
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @DeleteMapping ("/deleteUser")
     public ResponseEntity<String> delete(@RequestParam String id_user){
         utilisateurRepository.deleteById(id_user);

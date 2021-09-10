@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @Repository
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public interface MedicamentReposotory extends MongoRepository<Medicament,String> {
 
     @Query("{ 'nom_medoc' : ?0 }")

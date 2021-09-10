@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Repository
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 
 public interface UtilisateurRepository extends MongoRepository<Utilisateur,String> {
 

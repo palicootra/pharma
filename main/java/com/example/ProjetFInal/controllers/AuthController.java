@@ -35,7 +35,7 @@ public class AuthController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/authenticate")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
         try {

@@ -16,14 +16,14 @@ public class PharmacieController {
     @Autowired
     private PharmacieService pharmacieService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/addPharma")
     private  String create(@RequestBody Pharmacie pharmacie){
         Pharmacie pharmacie1 = pharmacieService.create(pharmacie);
         return pharmacie1.toString();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/findAll")
     private ResponseEntity<List<Pharmacie>> getAll(){
         List<Pharmacie> pharma = pharmacieService.getAll();
@@ -31,7 +31,7 @@ public class PharmacieController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PutMapping("/updatePharma")
     public ResponseEntity updatePharma(@RequestBody Pharmacie pharmacie){
         Pharmacie pharmacie1 = pharmacieService.getId(pharmacie.getId())
@@ -51,7 +51,7 @@ public class PharmacieController {
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @DeleteMapping ("/deletePharma")
     public ResponseEntity<String> delete(@RequestParam String id_pharma){
       pharmacieService.delePharma(id_pharma);
