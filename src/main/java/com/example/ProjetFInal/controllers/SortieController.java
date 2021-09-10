@@ -49,7 +49,7 @@ public class SortieController {
         System.out.println(lots.size() );
         lots.removeIf(lot -> !(lot.getQte_lot() > 0));
         System.out.println(lots.get(0).toString() );
-        for (int i = 1; i <sortie.getQte_sort(); i++) {
+        for (int i = 0; i <sortie.getQte_sort(); i++) {
             if(lots.size()> 0){
                 Lot lot1 = lots.get(0);
                 lot1.setQte_lot(lot1.getQte_lot()-1);
