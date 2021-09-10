@@ -1,7 +1,9 @@
 package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.Lot;
+import com.example.ProjetFInal.modeles.Medicament;
 import com.example.ProjetFInal.services.LotService;
+import com.example.ProjetFInal.services.MedicamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +15,24 @@ import java.util.List;
 @RequestMapping("/lot")
 public class LoController {
     private final LotService lotService;
+    private final MedicamentService medicamentService;
 
     @Autowired
-    public LoController(LotService lotService) {
+    public LoController(LotService lotService,MedicamentService medicamentService) {
         this.lotService = lotService;
+        this.medicamentService = medicamentService;
     }
 
     @CrossOrigin(origins ="http://localhost:4200")
     @PostMapping("/addLot")
-    private String create( @RequestBody  Lot lot){
+    private ResponseEntity <Object>create( @RequestBody  Lot lot){
+
+        Medicament medicament = this.medicamentService.getById( lot.getId_medicament()).get();
+        System.out.println(medicament.getNom_medoc());
+        medicament.setLast_price(lot.getPrix_lot());
+        medicamentService.save(medicament);
         Lot lot1 = lotService.create(lot);
-        return lot1.toString();
+        return new ResponseEntity<>(lot1, HttpStatus.CREATED);
     }
 
 
