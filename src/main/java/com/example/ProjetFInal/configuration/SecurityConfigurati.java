@@ -45,7 +45,8 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate","/all","/addLot","/lot/addLot",
+                .antMatchers("/authenticate","/all","/addLot","/lot/addLot","/lot/allLot",
+                        "/allLot",
                         "/pharmacie/findAll","/findAll","/addPharma","/pharmacie/addPharma",
                         "/findMedoc","/medicament/findMedoc","/findAllMedoc","/medicament/findAllMedoc",
                         "/createUser","/medicament/addMedoc","/addMedoc",
