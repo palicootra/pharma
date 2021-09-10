@@ -48,7 +48,7 @@ public class SortieController {
         List<Lot> lots = this.lotService.getBiIdMedicament(sortie.getId_medoc());
         System.out.println(lots.size() );
         lots.removeIf(lot -> !(lot.getQte_lot() > 0));
-        System.out.println(lots.size() );
+        System.out.println(lots.get(0).toString() );
         for (int i = 1; i <sortie.getQte_sort(); i++) {
             if(lots.size()> 0){
                 Lot lot1 = lots.get(0);
