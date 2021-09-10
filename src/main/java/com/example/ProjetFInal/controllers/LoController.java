@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,8 @@ public class LoController {
     @CrossOrigin(origins ="http://localhost:4200")
     @PostMapping("/addLot")
     private ResponseEntity <Object>create( @RequestBody  Lot lot){
+        lot.setCreated_at(new Date());
+        lot.setQte_lot(lot.getQtedepart_lot());
 
         Medicament medicament = this.medicamentService.getById( lot.getId_medicament()).get();
         System.out.println(medicament.getNom_medoc());
