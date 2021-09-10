@@ -46,7 +46,7 @@ public class HelloController {
             if( user.getId_pharma() != null && user.getId_pharma().trim().length() != 0 ){
                 System.out.println(user.getId_pharma());
 
-                pharmacies.add(this.pharmacieService.getPharma(user.getId_pharma()).get()) ;
+                pharmacies.add(this.pharmacieService.getPharma(user.getId_pharma()).get(0)) ;
             }
 
         }

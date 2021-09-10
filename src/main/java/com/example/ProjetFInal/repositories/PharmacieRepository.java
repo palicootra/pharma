@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @CrossOrigin(origins = "http://localhost:4200")
@@ -16,6 +15,6 @@ import java.util.Optional;
 public interface PharmacieRepository extends MongoRepository<Pharmacie,String> {
     @Query("{'nom_phar' : ?0 }")
     Pharmacie findByNom_phar(String nom_phar);
-    Optional<Pharmacie> findById (String id);
 
+    List<Pharmacie> findPharmacieById(String id);
 }

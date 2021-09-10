@@ -31,6 +31,34 @@ public class PharmacieController {
         return new ResponseEntity<>(pharmacies, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/updatePharma")
+    public ResponseEntity updatePharma(@RequestBody Pharmacie pharmacie){
+        Pharmacie pharmacie1 = pharmacieService.getId(pharmacie.getId())
+                .orElseThrow(()-> new RuntimeException(String.format("nous ne trouvons pas de pharmacie avec  pour id: %s",pharmacie.getId())));
+        pharmacie1.setNom_phar(pharmacie.getNom_phar());
+        pharmacie1.setEmail_phar(pharmacie.getEmail_phar());
+        pharmacie1.setTel_phar(pharmacie.getTel_phar());
+        pharmacie1.setStatu_phar(pharmacie.getStatu_phar());
+        pharmacie1.getAdresse().setPays(pharmacie.getAdresse().getPays());
+        pharmacie1.getAdresse().setVille(pharmacie.getAdresse().getVille());
+        pharmacie1.getAdresse().setRegion(pharmacie.getAdresse().getRegion());
+        pharmacie1.getAdresse().setDepartement(pharmacie.getAdresse().getDepartement());
+        pharmacie1.getAdresse().setLongitude(pharmacie.getAdresse().getLongitude());
+        pharmacie1.getAdresse().setLatitude(pharmacie.getAdresse().getLatitude());
+        pharmacie1.getAdresse().setCode_postal(pharmacie.getAdresse().getCode_postal());
+        pharmacieService.save(pharmacie1);
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping ("/deletePharma")
+    public ResponseEntity<String> delete(@RequestParam String id_pharma){
+        pharmacieService.delePharma(id_pharma);
+        String supp = "supression effectué";
+        return new ResponseEntity<>(supp, HttpStatus.OK);
+    }
+
 
 
 }
