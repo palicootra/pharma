@@ -48,7 +48,7 @@ public class SortieController {
         List<Lot> lots = this.lotService.getBiIdMedicament(sortie.getId_medoc());
         System.out.println(lots.size() );
 
-        lots.removeIf(lot -> !(lot.getQte_lot() > 0));
+
 
         for (int i = 0; i <sortie.getQte_sort(); i++) {
             if(lots.size()> 0){
@@ -57,7 +57,11 @@ public class SortieController {
                 id_lots.add(lot1.getId());
                 sortie.setTotal_amount(lot1.getPrix_lot()+sortie.getTotal_amount());
 
-                lots.removeIf(lot -> !(lot.getQte_lot() > 0));
+                try {
+                    lots.removeIf(lot -> !(lot.getQte_lot() > 0));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 quantity=quantity+1;
             }
         }
