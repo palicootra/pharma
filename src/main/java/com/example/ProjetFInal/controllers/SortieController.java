@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/Sortie")
 public class SortieController {
 
@@ -91,7 +92,7 @@ public class SortieController {
         return new ResponseEntity<>(sortie, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getByPharmacie/{id_pharmacie}")
     private ResponseEntity<Object> findById_pharmacie(@PathVariable String id_pharmacie){
         List<Sortie> sorties = sortieService.findById_pharmacie(id_pharmacie);
