@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,7 @@ public class PharmacieController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addPharma")
     public  ResponseEntity create(@RequestBody Pharmacie pharmacie){
+        pharmacie.setCreated_at(new Date());
         Pharmacie pharmacie1 = pharmacieService.create(pharmacie);
         return new ResponseEntity<>(pharmacie1, HttpStatus.CREATED);
     }

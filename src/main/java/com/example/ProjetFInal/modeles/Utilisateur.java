@@ -34,6 +34,7 @@ public class Utilisateur {
     private String userphone ;
     private Integer etatuser ;
     private Boolean satutuser ;
+    private Boolean sex ;
     private Adresse adresse;
     private String id_pharma;
     private Date created_at;
