@@ -1,4 +1,4 @@
-package com.example.ProjetFInal.modeles;
+package com.example.ProjetFInal.utility;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

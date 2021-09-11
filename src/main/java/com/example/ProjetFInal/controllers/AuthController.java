@@ -1,7 +1,7 @@
 package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.JwtRequest;
-import com.example.ProjetFInal.modeles.JwtResponse;
+import com.example.ProjetFInal.utility.JwtResponse;
 import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.services.UserService;
 import com.example.ProjetFInal.utility.JWTUtility;

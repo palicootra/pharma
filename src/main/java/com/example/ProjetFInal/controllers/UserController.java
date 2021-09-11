@@ -1,7 +1,11 @@
 package com.example.ProjetFInal.controllers;
 
 
-import com.example.ProjetFInal.modeles.*;
+import com.example.ProjetFInal.enumeration.ROLES;
+import com.example.ProjetFInal.utility.JwtResponse;
+import com.example.ProjetFInal.modeles.Pharmacie;
+import com.example.ProjetFInal.utility.Result;
+import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
 import com.example.ProjetFInal.services.PharmacieService;
 import com.example.ProjetFInal.services.UserService;
@@ -57,14 +61,15 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/createUser")
-    public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Utilisateur utilisateur){
        try {
            utilisateur.setEtatuser(1);
            utilisateur.setSatutuser(true);
+           ArrayList<String> role = new ArrayList<>();
+           role.add(ROLES.USER.name());
+           utilisateur.setRoles(role);
            utilisateur.setCreated_at(new Date());
-
-
            Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
            return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
        }catch (Exception e){
@@ -73,6 +78,24 @@ public class UserController {
 
            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
        }
+
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/createUser")
+    public ResponseEntity<?> create(@RequestBody Utilisateur utilisateur){
+        try {
+            utilisateur.setEtatuser(1);
+            utilisateur.setSatutuser(true);
+            utilisateur.setCreated_at(new Date());
+            Utilisateur insertuser =  utilisateurRepository.insert(utilisateur);
+            return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
+        }catch (Exception e){
+            e.printStackTrace();
+            Result response = new Result("cet utilisateur existe déja", 409);
+
+            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+        }
 
     }
 

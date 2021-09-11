@@ -1,9 +1,8 @@
 package com.example.ProjetFInal.controllers;
 
-import com.example.ProjetFInal.exceptions.SortieIntrouvaleException;
 import com.example.ProjetFInal.modeles.Lot;
 import com.example.ProjetFInal.modeles.Medicament;
-import com.example.ProjetFInal.modeles.Result;
+import com.example.ProjetFInal.utility.Result;
 import com.example.ProjetFInal.modeles.Sortie;
 import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
@@ -72,10 +71,10 @@ public class SortieController {
             for (Lot lot:lots) {
                 this.lotService.save(lot);
             }
-            return new ResponseEntity(sortie1,HttpStatus.OK) ;
+            return new ResponseEntity <Object>(sortie1,HttpStatus.OK) ;
         }else {
             Result resultat = new Result("le stock actuel n'est pas suffisant pour effectuer cette vente", 406);
-            return new ResponseEntity(resultat,HttpStatus.OK) ;
+            return new ResponseEntity <Object>(resultat,HttpStatus.OK) ;
         }
 
 
@@ -124,7 +123,7 @@ public class SortieController {
 
     @CrossOrigin(origins = "*")
     @PutMapping("/updateSortie")
-    public ResponseEntity updateSortie(@RequestBody Sortie sortie){
+    public ResponseEntity <Object> updateSortie(@RequestBody Sortie sortie){
 
         Sortie sortie1 = sortieService.getId(sortie.getId())
                 .orElseThrow(()->new RuntimeException(String.format("Nous trouvons aucune vente avec cette id  %s\"",sortie.getId())));
