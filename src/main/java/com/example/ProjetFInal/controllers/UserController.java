@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-public class HelloController {
+public class UserController {
     private final JWTUtility jwtUtility;
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
@@ -27,8 +27,8 @@ public class HelloController {
     @Autowired
     public UtilisateurRepository utilisateurRepository;
 
-    public HelloController(JWTUtility jwtUtility,PharmacieService pharmacieService,
-                           AuthenticationManager authenticationManager, UserService userService) {
+    public UserController(JWTUtility jwtUtility, PharmacieService pharmacieService,
+                          AuthenticationManager authenticationManager, UserService userService) {
 
             this.jwtUtility = jwtUtility;
             this.authenticationManager = authenticationManager;
