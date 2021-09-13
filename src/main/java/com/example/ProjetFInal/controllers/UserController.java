@@ -88,6 +88,7 @@ public class UserController {
             utilisateur.setEtatuser(1);
             utilisateur.setSatutuser(true);
             utilisateur.setCreated_at(new Date());
+            System.out.println(utilisateur.toString());
             Utilisateur insertuser =  utilisateurRepository.save(utilisateur);
             return new ResponseEntity<>(insertuser, HttpStatus.CREATED);
         }catch (Exception e){
