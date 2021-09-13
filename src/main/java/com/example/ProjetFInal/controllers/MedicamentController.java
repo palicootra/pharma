@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,13 +44,21 @@ public class MedicamentController {
         return new ResponseEntity<>(medicament1, HttpStatus.OK);
     }
 
+    /**
+     * foncttion principale de recherche
+     *
+     *
+     * */
     @CrossOrigin(origins = "*")
     @GetMapping("/findMedoc")
-    private ResponseEntity<List<Pharmacie>>  findMedoc(@RequestParam String nom_medoc){
 
+
+    private ResponseEntity<Object>  findMedoc(@RequestParam String nom_medoc){
+
+        //recherche du mot saisi dans la liste des medicaments
         List<Medicament> medicaments = medicamentService.getName(nom_medoc);
-        System.out.println(medicaments.size());
-        List<Pharmacie> pharmacies = null;
+
+        List<Pharmacie> pharmacies = new ArrayList<>();
         if (medicaments.isEmpty()){
             Tag tag=tagService.getByLibele(nom_medoc);
             if (tag == null){
