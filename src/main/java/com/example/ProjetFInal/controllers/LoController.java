@@ -59,7 +59,7 @@ public class LoController {
         for (Lot lot :lots) {
             if( lot.getId_pharmacie() != null && lot.getId_pharmacie().trim().length() != 0 ){
                 System.out.println(lot.getId_pharmacie());
-                pharmacies.add(this.pharmacieService.getPharma(lot.getId_pharmacie()).get(0)) ;
+              //  pharmacies.add(this.pharmacieService.getPharma(lot.getId_pharmacie()).get(0)) ;
             }
 
         }
