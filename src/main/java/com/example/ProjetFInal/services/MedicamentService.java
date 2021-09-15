@@ -21,6 +21,7 @@ public class MedicamentService {
         return medicamentReposotory.save(medicament);
     }
     public List<Medicament> getByName(String nom_medoc){return  medicamentReposotory.findByNom_medoc(nom_medoc);}
+    public List<Medicament> getByMarque(String marque_medoc){return  medicamentReposotory.findByMarque_medoc(marque_medoc);}
     public List<Medicament> getTag(String tag) {return medicamentReposotory.findAllByTag(tag);}
     public List<Medicament> getAll() {return medicamentReposotory.findAll();}
     public Optional<Medicament> getById(String id) {return medicamentReposotory.findById(id);}

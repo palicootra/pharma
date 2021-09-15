@@ -56,6 +56,8 @@ public class MedicamentController {
 
         //recherche du mot saisi dans la liste des medicaments
         List<Medicament> medicaments = medicamentService.getByName(nom_medoc);
+        List<Medicament> medicaments2 = medicamentService.getByMarque(nom_medoc);
+        medicaments.addAll(medicaments2);
 
         Set<Pharmacie> pharmacies = new HashSet<>();
 
