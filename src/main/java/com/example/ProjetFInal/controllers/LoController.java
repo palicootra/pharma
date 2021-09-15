@@ -13,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/lot")
@@ -70,7 +67,9 @@ public class LoController {
         for (Lot lot :lots) {
             if( lot.getId_medicament() != null && lot.getId_medicament().trim().length() != 0 ){
                 System.out.println(lot.getId_medicament());
-                medicaments.add(this.medicamentService.getById(lot.getId_medicament()).get()) ;
+                Optional<Medicament> med = this.medicamentService.getById(lot.getId_medicament());
+                med.ifPresent(medicaments::add);
+
             }
 
         }
