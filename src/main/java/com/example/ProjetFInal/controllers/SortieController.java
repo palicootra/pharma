@@ -98,7 +98,9 @@ public class SortieController {
         HashSet<Medicament> medicaments = new HashSet<>();
         for (Sortie sortie :sorties) {
             if( sortie.getId_medoc() != null && sortie.getId_medoc() .trim().length() != 0 ){
-                medicaments.add(this.medicamentService.getById(sortie.getId_medoc()).get()) ;
+                Optional<Medicament> med = this.medicamentService.getById(sortie.getId_medoc());
+                med.ifPresent(medicaments::add);
+                //medicaments.add(this.medicamentService.getById(sortie.getId_medoc()).get()) ;
             }
 
         }
