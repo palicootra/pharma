@@ -42,7 +42,7 @@ public class SortieController {
         List <String>id_lots= new ArrayList<>();
         System.out.println(sortie.getId_medoc());
         //Medicament medicament = this.medicamentService.getById(sortie.getId_medoc()).get();
-        List<Lot> lots = this.lotService.getBiIdMedicament(sortie.getId_medoc());
+        List<Lot> lots = this.lotService.getByIdMedicament(sortie.getId_medoc());
         System.out.println(lots.size() );
 
 

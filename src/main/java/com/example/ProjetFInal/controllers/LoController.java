@@ -89,8 +89,8 @@ public class LoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/allMedicamentLot")
-    private List<Lot> getBiIdMedicament(@PathVariable String id_medicament){
-        return lotService.getBiIdMedicament(id_medicament);
+    private List<Lot> getByIdMedicament(@PathVariable String id_medicament){
+        return lotService.getByIdMedicament(id_medicament);
     }
 
     @CrossOrigin(origins = "*")
