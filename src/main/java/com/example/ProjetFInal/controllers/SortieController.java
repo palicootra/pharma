@@ -136,10 +136,11 @@ public class SortieController {
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping ("/deleteSortie")
-    public ResponseEntity<String> delete(@RequestParam String id_sort){
+    @DeleteMapping ("/delete")
+    public ResponseEntity<Result> delete(@RequestParam String id_sort){
         sortieService.deleteSortie(id_sort);
-        String supp = "supression effectué";
-        return new ResponseEntity<>(supp, HttpStatus.OK);
+        Result resultat =new Result("supression effectué",202);
+
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
 }

@@ -7,6 +7,7 @@ import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
 import com.example.ProjetFInal.services.PharmacieService;
+import com.example.ProjetFInal.utility.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -112,10 +113,10 @@ public class LoController {
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping ("/deleteLot")
-    public ResponseEntity<String> delete(@RequestParam String id_lot){
+    @DeleteMapping ("/delete")
+    public ResponseEntity<Result> delete(@RequestParam String id_lot){
         lotService.deleteLot(id_lot);
-        String supp = "supression effectué";
-        return new ResponseEntity<>(supp, HttpStatus.OK);
+        Result resultat =new Result("supression effectué",202);
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
 }

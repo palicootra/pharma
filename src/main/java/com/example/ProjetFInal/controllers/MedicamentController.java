@@ -109,7 +109,7 @@ public class MedicamentController {
     @DeleteMapping ("/delete")
     public ResponseEntity<Result> delete(@RequestParam String id_medicament){
         medicamentService.delete(id_medicament);
-        Result resultat =new Result("supression effectué",204);
+        Result resultat =new Result("supression effectué",202);
 
         return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }

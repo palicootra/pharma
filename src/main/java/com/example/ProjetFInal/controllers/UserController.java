@@ -152,11 +152,12 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
     @CrossOrigin(origins = "*")
-    @DeleteMapping ("/deleteUser")
-    public ResponseEntity<String> delete(@RequestParam String id_user){
+    @DeleteMapping ("/delete")
+    public ResponseEntity<Result> delete(@RequestParam String id_user){
         utilisateurRepository.deleteById(id_user);
-        String supp = "supression effectué";
-        return new ResponseEntity<>(supp, HttpStatus.OK);
+        Result resultat =new Result("supression effectué",204);
+
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
 
 
