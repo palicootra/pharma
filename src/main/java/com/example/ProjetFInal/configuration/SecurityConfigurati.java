@@ -52,6 +52,10 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                         "/pharmacie/findAll","/findAll","/addPharma","/pharmacie/addPharma",
                         "/findMedoc","/medicament/findMedoc","/findAllMedoc","/medicament/findAllMedoc",
                         "/createUser","/medicament/addMedoc","/addMedoc","/register",
+                        "/medicament/delete",
+                        "/pharmacie/delete",
+                        "/lot/delete",
+                        "/delete",
                         "/swagger-ui.html","/login")
                 .permitAll()
                 .anyRequest()
