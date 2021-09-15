@@ -44,7 +44,7 @@ public class MedicamentController {
     }
 
     /**
-     * foncttion principale de recherche
+     * fonction principale de recherche
      *
      *
      * */

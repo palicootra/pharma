@@ -54,14 +54,7 @@ public class PharmacieController {
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = "*")
-    @DeleteMapping ("/delete")
-    public ResponseEntity<Result> delete(@RequestParam String id_pharma){
-        pharmacieService.delePharma(id_pharma);
-        Result resultat =new Result("supression effectué",202);
 
-        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
-    }
 
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/delete")
