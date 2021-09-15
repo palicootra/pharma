@@ -1,6 +1,7 @@
 package com.example.ProjetFInal.services;
 
 
+import com.example.ProjetFInal.modeles.Medicament;
 import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @Service
@@ -32,5 +34,12 @@ public class UserService implements UserDetailsService {
     public Utilisateur findUser(String name){
         return utilisateurRepository.findByUsername(name);
     }
+    public void delete(Utilisateur utilisateur){
 
+        utilisateurRepository.delete(utilisateur);
+    }
+
+    public Optional<Utilisateur> getById(String id) {
+        return utilisateurRepository.findById(id);
+    }
 }

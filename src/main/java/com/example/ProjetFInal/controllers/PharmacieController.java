@@ -1,6 +1,7 @@
 package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.Pharmacie;
+import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.services.PharmacieService;
 import com.example.ProjetFInal.utility.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pharmacie")
@@ -57,6 +59,30 @@ public class PharmacieController {
     public ResponseEntity<Result> delete(@RequestParam String id_pharma){
         pharmacieService.delePharma(id_pharma);
         Result resultat =new Result("supression effectué",202);
+
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
+    }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping ("/delete")
+    public ResponseEntity delete(@RequestBody Pharmacie pharmacie){
+        try {
+            System.out.println(pharmacie.toString());
+            pharmacieService.delete(pharmacie);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Optional<Pharmacie> user = this.pharmacieService.getById(pharmacie.getId());
+        Result resultat;
+        if(!user.isPresent()){
+            System.out.println("+++++++++++++++++++++++++++++++");
+
+            resultat =new Result("supression effectué",202);
+
+        }else{
+            resultat =new Result("Echec de supression",404);
+        }
+
 
         return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }

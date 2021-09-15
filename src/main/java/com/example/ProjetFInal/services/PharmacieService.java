@@ -1,6 +1,7 @@
 package com.example.ProjetFInal.services;
 
 import com.example.ProjetFInal.modeles.Pharmacie;
+import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.PharmacieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,14 @@ public class PharmacieService {
     }
     public Pharmacie save(Pharmacie pharmacie){return pharmacieRepository.save(pharmacie);}
     public Optional<Pharmacie> getId( String id_pharma){return pharmacieRepository.findById(id_pharma);}
+
+    public void delete(Pharmacie pharmacie){
+
+        pharmacieRepository.delete(pharmacie);
+    }
+
+
+    public Optional<Pharmacie> getById(String id) {
+        return pharmacieRepository.findById(id);
+    }
 }

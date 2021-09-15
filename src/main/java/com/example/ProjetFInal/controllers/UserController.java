@@ -2,6 +2,7 @@ package com.example.ProjetFInal.controllers;
 
 
 import com.example.ProjetFInal.enumeration.ROLES;
+import com.example.ProjetFInal.modeles.Medicament;
 import com.example.ProjetFInal.utility.JwtResponse;
 import com.example.ProjetFInal.modeles.Pharmacie;
 import com.example.ProjetFInal.utility.Result;
@@ -151,15 +152,30 @@ public class UserController {
         utilisateurRepository.save(utilisateur1);
         return ResponseEntity.ok().build();
     }
+
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/delete")
-    public ResponseEntity<Result> delete(@RequestParam String id_user){
-        utilisateurRepository.deleteById(id_user);
-        Result resultat =new Result("supression effectué",204);
+    public ResponseEntity delete(@RequestBody Utilisateur  utilisateur){
+        try {
+            System.out.println(utilisateur.toString());
+            userService.delete(utilisateur);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Optional<Utilisateur> user = this.userService.getById(utilisateur.getId());
+        Result resultat;
+        if(!user.isPresent()){
+            System.out.println("+++++++++++++++++++++++++++++++");
+
+            resultat =new Result("supression effectué",202);
+
+        }else{
+            resultat =new Result("Echec de supression",404);
+        }
+
 
         return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
-
 
 
 
