@@ -9,14 +9,13 @@ import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
 import com.example.ProjetFInal.services.PharmacieService;
 import com.example.ProjetFInal.services.TagService;
+import com.example.ProjetFInal.utility.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/medicament")
@@ -56,9 +55,9 @@ public class MedicamentController {
     private ResponseEntity<Object>  findMedoc(@RequestParam String nom_medoc){
 
         //recherche du mot saisi dans la liste des medicaments
-        List<Medicament> medicaments = medicamentService.getName(nom_medoc);
+        List<Medicament> medicaments = medicamentService.getByName(nom_medoc);
 
-        List<Pharmacie> pharmacies = new ArrayList<>();
+        Set<Pharmacie> pharmacies = new HashSet<>();
         if (medicaments.isEmpty()){
             Tag tag=tagService.getByLibele(nom_medoc);
             if (tag == null){
@@ -86,12 +85,15 @@ public class MedicamentController {
                 List<Lot> lots = lotService.getBiIdMedicament(medoc.getId());
                 for (Lot lot:lots
                 ) {
-                    // pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
+                     pharmacies.addAll(pharmacieService.getPharma(lot.getId_pharmacie()));
+
                      System.out.println(pharmacies);
+
                 }
             }
-            return new ResponseEntity<>(pharmacies, HttpStatus.OK) ;
+
         }
+        return new ResponseEntity<>(pharmacies, HttpStatus.OK) ;
     }
 
     @CrossOrigin(origins = "*")
@@ -100,6 +102,16 @@ public class MedicamentController {
         List<Medicament> medicaments = medicamentService.getAll();
         System.out.println(medicaments.size());
         return new ResponseEntity<>(medicaments, HttpStatus.OK);
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping ("/delete")
+    public ResponseEntity<Result> delete(@RequestParam String id_medicament){
+        medicamentService.delete(id_medicament);
+        Result resultat =new Result("supression effectué",204);
+
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
 
 }

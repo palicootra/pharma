@@ -18,13 +18,14 @@ public class MedicamentService {
     private MedicamentReposotory medicamentReposotory;
 
     public Medicament create(Medicament medicament){
-        return medicamentReposotory.insert(medicament);
+        return medicamentReposotory.save(medicament);
     }
-    public List<Medicament> getName(String nom_medoc){return  medicamentReposotory.findByNom_medoc(nom_medoc);}
+    public List<Medicament> getByName(String nom_medoc){return  medicamentReposotory.findByNom_medoc(nom_medoc);}
     public List<Medicament> getTag(String tag) {return medicamentReposotory.findAllByTag(tag);}
     public List<Medicament> getAll() {return medicamentReposotory.findAll();}
     public Optional<Medicament> getById(String id) {return medicamentReposotory.findById(id);}
     public Medicament save(Medicament medicament){return medicamentReposotory.save(medicament);}
+    public void delete(String id){ medicamentReposotory.deleteById(id);}
 
 
 }

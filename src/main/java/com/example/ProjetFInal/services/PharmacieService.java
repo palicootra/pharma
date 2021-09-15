@@ -15,7 +15,7 @@ public class PharmacieService {
     private PharmacieRepository pharmacieRepository;
 
     public Pharmacie create(Pharmacie pharmacie){
-        return  pharmacieRepository.insert(pharmacie);
+        return  pharmacieRepository.save(pharmacie);
     }
     public List<Pharmacie> getAll(){return pharmacieRepository.findAll();}
     public void delePharma( String id_pharma){ pharmacieRepository.deleteById(id_pharma);}

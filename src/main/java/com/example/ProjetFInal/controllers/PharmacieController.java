@@ -2,6 +2,7 @@ package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.modeles.Pharmacie;
 import com.example.ProjetFInal.services.PharmacieService;
+import com.example.ProjetFInal.utility.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +54,11 @@ public class PharmacieController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/deletePharma")
-    public ResponseEntity<String> delete(@RequestParam String id_pharma){
+    public ResponseEntity<Result> delete(@RequestParam String id_pharma){
         pharmacieService.delePharma(id_pharma);
-        String supp = "supression effectué";
-        return new ResponseEntity<>(supp, HttpStatus.OK);
+        Result resultat =new Result("supression effectué",204);
+
+        return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
 
 
