@@ -90,7 +90,7 @@ public class MedicamentController {
         long medicaments = medicamentService.getNumber();
         Result resultat=new Result("ok", (int)medicaments);
 
-        return new ResponseEntity<>(medicaments, HttpStatus.OK);
+        return new ResponseEntity<>(resultat, HttpStatus.OK);
     }
 
 
