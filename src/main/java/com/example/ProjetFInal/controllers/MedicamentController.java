@@ -107,7 +107,7 @@ public class MedicamentController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/delete")
-    public ResponseEntity<Object> delete(@RequestBody Medicament medicament){
+    public ResponseEntity delete(@RequestBody Medicament medicament){
         try {
             System.out.println(medicament.toString());
             medicamentService.delete(medicament);
@@ -118,8 +118,9 @@ public class MedicamentController {
         Result resultat;
         if(!med.isPresent()){
             System.out.println("+++++++++++++++++++++++++++++++");
-            System.out.println(medicament.toString());
+
             resultat =new Result("supression effectué",202);
+            System.out.println(medicament.toString());
         }else{
             resultat =new Result("Echec de supression",404);
         }
