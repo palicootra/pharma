@@ -20,6 +20,5 @@ public interface MedicamentReposotory extends MongoRepository<Medicament,String>
 List<Medicament >findAllByTag(String id_tag);
 
 
-
-
+    List<Medicament> findByMarque_medoc(String marque_medoc);
 }
