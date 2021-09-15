@@ -27,7 +27,7 @@ public class LotService {
         return lotrepository.findById_pharmacie(id_pharma);
     }
 
-    public List<Lot> getBiIdMedicament(String id_medicament){
+    public List<Lot> getByIdMedicament(String id_medicament){
         return lotrepository.findById_medicament(id_medicament);
     }
 

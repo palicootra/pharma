@@ -58,33 +58,11 @@ public class MedicamentController {
         List<Medicament> medicaments = medicamentService.getByName(nom_medoc);
 
         Set<Pharmacie> pharmacies = new HashSet<>();
-        if (medicaments.isEmpty()){
-            Tag tag=tagService.getByLibele(nom_medoc);
-            if (tag == null){
-                if (medicaments.isEmpty()) throw new SortieIntrouvaleException("Aucune maladie ou medicament ne correspond a ce mot clé ");
 
-            }else {
-                medicaments=medicamentService.getTag(tag.getId_tag());
-                for (Medicament medoc:medicaments
-                ) {
-                    List<Lot> lots = lotService.getBiIdMedicament(medoc.getId());
-                    for (Lot lot:lots
-                    ) {
-                        //pharmacies = pharmacieService.getPharma(lot.getId_pharmacie());
-                        System.out.println(pharmacies);
-
-                    }
-                }
-            }
-
-
-            return new ResponseEntity<>(pharmacies, HttpStatus.OK) ;
-        }else {
-            for (Medicament medoc:medicaments
-            ) {
-                List<Lot> lots = lotService.getBiIdMedicament(medoc.getId());
-                for (Lot lot:lots
-                ) {
+            for (Medicament medoc:medicaments) {
+                List<Lot> lots = lotService.getByIdMedicament(medoc.getId());
+                for (Lot lot:lots) {
+                    if(lot.getQte_lot()>0)
                      pharmacies.addAll(pharmacieService.getPharma(lot.getId_pharmacie()));
 
                      System.out.println(pharmacies);
@@ -92,7 +70,7 @@ public class MedicamentController {
                 }
             }
 
-        }
+
         return new ResponseEntity<>(pharmacies, HttpStatus.OK) ;
     }
 
