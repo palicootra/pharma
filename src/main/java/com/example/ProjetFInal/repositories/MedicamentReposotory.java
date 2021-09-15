@@ -19,7 +19,7 @@ public interface MedicamentReposotory extends MongoRepository<Medicament,String>
 
 List<Medicament >findAllByTag(String id_tag);
 
-
+    @Query("{ 'marque_medoc' : ?0 }")
     List<Medicament> findByMarque_medoc(String marque_medoc);
 
 }
