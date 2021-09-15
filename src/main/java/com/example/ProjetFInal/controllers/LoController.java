@@ -113,9 +113,11 @@ public class LoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/delete")
-    public ResponseEntity<Result> delete(@RequestParam String id_lot){
-        lotService.deleteLot(id_lot);
+    public ResponseEntity<Result> delete(@RequestBody Lot lot){
+        lotService.deleteLot(lot.getId());
         Result resultat =new Result("supression effectué",202);
         return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
     }
+
+
 }
