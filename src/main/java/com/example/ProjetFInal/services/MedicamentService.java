@@ -25,7 +25,10 @@ public class MedicamentService {
     public List<Medicament> getAll() {return medicamentReposotory.findAll();}
     public Optional<Medicament> getById(String id) {return medicamentReposotory.findById(id);}
     public Medicament save(Medicament medicament){return medicamentReposotory.save(medicament);}
-    public void delete(String id){ medicamentReposotory.deleteById(id);}
+    public void delete(Medicament medicament){
+        System.out.println(medicament.toString());
+        medicamentReposotory.delete(medicament);
+    }
 
 
 }

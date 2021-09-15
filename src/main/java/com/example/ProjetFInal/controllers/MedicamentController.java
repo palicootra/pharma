@@ -107,15 +107,16 @@ public class MedicamentController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping ("/delete")
-    public ResponseEntity<Result> delete(@RequestParam String id_medicament){
+    public ResponseEntity<Result> delete(@RequestBody Medicament medicament){
         try {
-            medicamentService.delete(id_medicament);
+            System.out.println(medicament.toString());
+            medicamentService.delete(medicament);
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        Optional<Medicament> medicament = this.medicamentService.getById(id_medicament);
+        Optional<Medicament> med = this.medicamentService.getById(medicament.getId());
         Result resultat;
-        if(!medicament.isPresent()){
+        if(!med.isPresent()){
             resultat =new Result("supression effectué",202);
         }else{
             resultat =new Result("Echec de supression",404);
