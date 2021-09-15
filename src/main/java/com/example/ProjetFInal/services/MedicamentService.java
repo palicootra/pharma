@@ -30,6 +30,7 @@ public class MedicamentService {
         System.out.println(medicament.toString());
         medicamentReposotory.delete(medicament);
     }
+    public long getNumber(){return  medicamentReposotory.count();}
 
 
 }
