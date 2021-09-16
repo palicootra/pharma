@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SortieRepositorie extends MongoRepository<Sortie,String> {
+public interface SortieRepository extends MongoRepository<Sortie,String> {
 
     Sortie findSortiesBy(String id);
 

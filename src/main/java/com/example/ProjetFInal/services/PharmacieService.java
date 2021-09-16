@@ -19,20 +19,15 @@ public class PharmacieService {
         return  pharmacieRepository.save(pharmacie);
     }
     public List<Pharmacie> getAll(){return pharmacieRepository.findAll();}
-    public void delePharma( String id_pharma){ pharmacieRepository.deleteById(id_pharma);}
+    public void deletePharmacie( String id_pharma){ pharmacieRepository.deleteById(id_pharma);}
     public List<Pharmacie> getPharma( String id){
         return pharmacieRepository.findPharmacieById(id);
     }
     public Pharmacie save(Pharmacie pharmacie){return pharmacieRepository.save(pharmacie);}
     public Optional<Pharmacie> getId( String id_pharma){return pharmacieRepository.findById(id_pharma);}
-
-    public void delete(Pharmacie pharmacie){
-
-        pharmacieRepository.delete(pharmacie);
-    }
-
-
+    public void delete(Pharmacie pharmacie){pharmacieRepository.delete(pharmacie);}
     public Optional<Pharmacie> getById(String id) {
         return pharmacieRepository.findById(id);
     }
+    public long count() {return pharmacieRepository.count();}
 }

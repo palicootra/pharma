@@ -2,6 +2,7 @@ package com.example.ProjetFInal.services;
 
 
 import com.example.ProjetFInal.modeles.Medicament;
+import com.example.ProjetFInal.modeles.Sortie;
 import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -42,4 +44,8 @@ public class UserService implements UserDetailsService {
     public Optional<Utilisateur> getById(String id) {
         return utilisateurRepository.findById(id);
     }
+
+    public List<Utilisateur> findById_pharmacie(String id_pharmacie){return utilisateurRepository.findById_pharmacie(id_pharmacie);}
+
+    public long count(){return  utilisateurRepository.count();}
 }

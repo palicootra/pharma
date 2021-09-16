@@ -3,7 +3,9 @@ package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.enumeration.ROLES;
 import com.example.ProjetFInal.modeles.Medicament;
+import com.example.ProjetFInal.modeles.Sortie;
 import com.example.ProjetFInal.services.MedicamentService;
+import com.example.ProjetFInal.services.SortieService;
 import com.example.ProjetFInal.utility.JwtResponse;
 import com.example.ProjetFInal.modeles.Pharmacie;
 import com.example.ProjetFInal.utility.Result;
@@ -30,13 +32,14 @@ public class UserController {
     private final UserService userService;
     private final PharmacieService pharmacieService;
     private final MedicamentService medicamentService;
+    private final SortieService sortieService;
 
     @Autowired
     public UtilisateurRepository utilisateurRepository;
 
     public UserController(JWTUtility jwtUtility, PharmacieService pharmacieService,
                           MedicamentService medicamentService,
-                          AuthenticationManager authenticationManager, UserService userService) {
+                          AuthenticationManager authenticationManager, UserService userService, SortieService sortieService) {
 
             this.jwtUtility = jwtUtility;
             this.authenticationManager = authenticationManager;
@@ -44,6 +47,7 @@ public class UserController {
             this.pharmacieService = pharmacieService;
             this.medicamentService=medicamentService;
 
+        this.sortieService = sortieService;
     }
 
     @CrossOrigin(origins = "*")
@@ -54,6 +58,7 @@ public class UserController {
         for (Utilisateur user :users) {
             if( user.getId_pharma() != null && user.getId_pharma().trim().length() > 0 ){
                 System.out.println(user.getId_pharma());
+                if(!this.pharmacieService.getPharma(user.getId_pharma()).isEmpty())
                 pharmacies.add(this.pharmacieService.getPharma(user.getId_pharma()).get(0)) ;
             }
 
@@ -187,15 +192,35 @@ public class UserController {
     public ResponseEntity getstats(@RequestParam (required = false) String id_pharmacie){
         HashMap<String, Object> statistiques = new HashMap<>();
         long totalMedicaments;
+        long totalSorties;
+        long totalUtilisateurs;
+        long totalPharmacies;
 
         if(id_pharmacie!= null){
             List<Medicament> medicaments= this.medicamentService.getByPharmacie(id_pharmacie);
             totalMedicaments=medicaments.size();
 
+            List<Sortie> sorties= this.sortieService.findById_pharmacie(id_pharmacie) ;
+            totalSorties=sorties.size();
+
+            List<Utilisateur> utilisateurs= this.userService.findById_pharmacie(id_pharmacie);
+            totalUtilisateurs=utilisateurs.size();
+
+
+
         }else{
             totalMedicaments = medicamentService.getNumber();
+            totalSorties = this.sortieService.count();
+            totalUtilisateurs = this.userService.count();
         }
+        totalPharmacies=this.pharmacieService.count();
+
+
         statistiques.put("medicaments",totalMedicaments);
+        statistiques.put("ventes",totalSorties);
+        statistiques.put("utilisateurs",totalUtilisateurs);
+        statistiques.put("pharmacies",totalPharmacies);
+
 
 
 
