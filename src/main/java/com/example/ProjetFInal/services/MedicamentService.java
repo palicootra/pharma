@@ -33,4 +33,7 @@ public class MedicamentService {
     public long getNumber(){return  medicamentReposotory.count();}
 
 
+    public List<Medicament> getByPharmacie(String id_pharmacie) {
+        return  medicamentReposotory.findByPharmacie(id_pharmacie);
+    }
 }

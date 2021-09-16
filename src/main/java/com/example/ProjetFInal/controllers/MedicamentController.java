@@ -84,13 +84,18 @@ public class MedicamentController {
         return new ResponseEntity<>(medicaments, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/count")
-    public ResponseEntity  count(){
-        long medicaments = medicamentService.getNumber();
-        Result resultat=new Result("ok", (int)medicaments);
 
-        return new ResponseEntity<>(resultat, HttpStatus.OK);
+    public long  count( String id_pharmacie){
+        long total;
+        if(id_pharmacie==null){
+             total = medicamentService.getNumber();
+
+        }else{
+            List<Medicament> medicaments = medicamentService.getByPharmacie(id_pharmacie);
+            total=medicaments.size();
+        }
+        return total;
+
     }
 
 

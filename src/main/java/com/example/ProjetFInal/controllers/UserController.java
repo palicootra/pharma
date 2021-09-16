@@ -3,6 +3,7 @@ package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.enumeration.ROLES;
 import com.example.ProjetFInal.modeles.Medicament;
+import com.example.ProjetFInal.services.MedicamentService;
 import com.example.ProjetFInal.utility.JwtResponse;
 import com.example.ProjetFInal.modeles.Pharmacie;
 import com.example.ProjetFInal.utility.Result;
@@ -28,17 +29,20 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
     private final PharmacieService pharmacieService;
+    private final MedicamentService medicamentService;
 
     @Autowired
     public UtilisateurRepository utilisateurRepository;
 
     public UserController(JWTUtility jwtUtility, PharmacieService pharmacieService,
+                          MedicamentService medicamentService,
                           AuthenticationManager authenticationManager, UserService userService) {
 
             this.jwtUtility = jwtUtility;
             this.authenticationManager = authenticationManager;
             this.userService = userService;
             this.pharmacieService = pharmacieService;
+            this.medicamentService=medicamentService;
 
     }
 
@@ -175,6 +179,28 @@ public class UserController {
 
 
         return new ResponseEntity<>(resultat, HttpStatus.ACCEPTED);
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping ("/getstats")
+    public ResponseEntity getstats(@RequestParam (required = false) String id_pharmacie){
+        HashMap<String, Object> statistiques = new HashMap<>();
+        long totalMedicaments;
+
+        if(id_pharmacie!= null){
+            List<Medicament> medicaments= this.medicamentService.getByPharmacie(id_pharmacie);
+            totalMedicaments=medicaments.size();
+
+        }else{
+            totalMedicaments = medicamentService.getNumber();
+        }
+        statistiques.put("medicaments",totalMedicaments);
+
+
+
+
+        return new ResponseEntity<>(statistiques, HttpStatus.OK);
     }
 
 
