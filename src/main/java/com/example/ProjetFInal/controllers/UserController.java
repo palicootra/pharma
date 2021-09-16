@@ -188,7 +188,7 @@ public class UserController {
 
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping ("/getstats")
+    @GetMapping ("/getstats")
     public ResponseEntity getstats(@RequestParam (required = false) String id_pharmacie){
         HashMap<String, Object> statistiques = new HashMap<>();
         long totalMedicaments;
