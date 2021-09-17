@@ -53,8 +53,13 @@ public class LoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/allLot")
-    private ResponseEntity<Object> gatAll(){
-        List<Lot> lots = lotService.getAll();
+    private ResponseEntity<Object> gatAll(@RequestParam (required = false) String id_pharmacie){
+        List<Lot> lots;
+        if(id_pharmacie!=null){
+            lots = lotService.getByIdPharma(id_pharmacie);
+        }else{
+             lots = lotService.getAll();
+        }
         HashSet<Pharmacie> pharmacies = new HashSet<>();
         for (Lot lot :lots) {
             if( lot.getId_pharmacie() != null && lot.getId_pharmacie().trim().length() != 0 ){
@@ -80,11 +85,6 @@ public class LoController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/allPharmaLot")
-    private List<Lot> getByIdPharma(@PathVariable String id_pharma){
-        return lotService.getByIdPharma(id_pharma);
-    }
 
 
     @CrossOrigin(origins = "*")

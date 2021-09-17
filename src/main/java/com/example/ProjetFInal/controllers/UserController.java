@@ -52,8 +52,14 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @GetMapping ("/all")
-    public ResponseEntity<Object> getAllUsers(){
-        List<Utilisateur> users = utilisateurRepository.findAll();
+    public ResponseEntity<Object> getAllUsers(@RequestParam (required = false) String id_pharmacie){
+        List<Utilisateur> users;
+        if(id_pharmacie!=null){
+            users = userService.findById_pharmacie(id_pharmacie);
+        }else{
+            users = userService.findAll();
+        }
+
         HashSet<Pharmacie> pharmacies = new HashSet<>();
         for (Utilisateur user :users) {
             if( user.getId_pharma() != null && user.getId_pharma().trim().length() > 0 ){

@@ -92,9 +92,14 @@ public class SortieController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/getByPharmacie/{id_pharmacie}")
-    private ResponseEntity<Object> findById_pharmacie(@PathVariable String id_pharmacie){
-        List<Sortie> sorties = sortieService.findById_pharmacie(id_pharmacie);
+    @GetMapping("/getByPharmacie")
+    private ResponseEntity<Object> findById_pharmacie(@RequestParam (required = false) String id_pharmacie){
+        List<Sortie> sorties;
+        if(id_pharmacie!=null){
+             sorties = sortieService.findById_pharmacie(id_pharmacie);
+        }else{
+            sorties = sortieService.getAll();
+        }
         HashSet<Medicament> medicaments = new HashSet<>();
         for (Sortie sortie :sorties) {
             if( sortie.getId_medoc() != null && sortie.getId_medoc() .trim().length() != 0 ){
@@ -116,11 +121,7 @@ public class SortieController {
         return sortieService.findById_medoc(id_medoc);
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/findAllSortie")
-    private List<Sortie> getAll(){
-        return sortieService.getAll();
-    }
+
 
 
     @CrossOrigin(origins = "*")

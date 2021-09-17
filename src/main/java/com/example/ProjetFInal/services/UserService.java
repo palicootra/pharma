@@ -48,4 +48,6 @@ public class UserService implements UserDetailsService {
     public List<Utilisateur> findById_pharmacie(String id_pharmacie){return utilisateurRepository.findById_pharmacie(id_pharmacie);}
 
     public long count(){return  utilisateurRepository.count();}
+
+    public List<Utilisateur> findAll() {return  utilisateurRepository.findAll();}
 }

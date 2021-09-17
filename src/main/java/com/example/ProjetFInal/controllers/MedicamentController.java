@@ -23,14 +23,12 @@ public class MedicamentController {
 
 
     private final MedicamentService medicamentService;
-    private final TagService tagService;
     private  final LotService lotService;
     private final PharmacieService pharmacieService;
 
     @Autowired
     public MedicamentController(MedicamentService medicamentService, TagService tagService, LotService lotService, PharmacieService pharmacieService) {
         this.medicamentService = medicamentService;
-        this.tagService = tagService;
         this.lotService = lotService;
         this.pharmacieService = pharmacieService;
     }
@@ -78,8 +76,14 @@ public class MedicamentController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/findAllMedoc")
-    public ResponseEntity  getAll(){
-        List<Medicament> medicaments = medicamentService.getAll();
+    public ResponseEntity  getAll(@RequestParam (required = false) String id_pharmacie){
+        List<Medicament> medicaments;
+        if(id_pharmacie!= null){
+             medicaments = medicamentService.getByPharmacie(id_pharmacie);
+        }else{
+             medicaments = medicamentService.getAll();
+        }
+
         System.out.println(medicaments.size());
         return new ResponseEntity<>(medicaments, HttpStatus.OK);
     }
