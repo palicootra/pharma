@@ -141,7 +141,7 @@ public class UserController {
         Utilisateur logU = userService.findUser(utilisateur.getUsername());
         return new ResponseEntity<>(new JwtResponse(token,logU), HttpStatus.OK);
 
-        //return new ResponseEntity<>(token, HttpStatus.OK);
+
 
     }
 

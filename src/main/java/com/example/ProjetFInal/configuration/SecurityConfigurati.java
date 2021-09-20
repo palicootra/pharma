@@ -46,10 +46,9 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate","/all","/addLot","/lot/addLot","/lot/allLot",
-                        "/allLot","/addSortie","/Sortie/addSortie","/Sortie/getByPharmacie/{id_pharmacie}",
+                        "/allLot","/addSortie","/Sortie/addSortie","/Sortie/getByPharmacie",
                         "/Sortie/findAllSortie",
-                        "/getByPharmacie/","/getstats",
-                        "/getByPharmacie/{id_pharmacie}",
+                        "/getstats",
                         "/pharmacie/findAll","/findAll","/addPharma","/pharmacie/addPharma",
                         "/findMedoc","/medicament/findMedoc","/findAllMedoc","/medicament/findAllMedoc",
                         "/createUser","/medicament/addMedoc","/addMedoc","/register",
