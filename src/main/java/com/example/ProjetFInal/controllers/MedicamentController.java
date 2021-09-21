@@ -1,10 +1,7 @@
 package com.example.ProjetFInal.controllers;
 
 import com.example.ProjetFInal.exceptions.SortieIntrouvaleException;
-import com.example.ProjetFInal.modeles.Lot;
-import com.example.ProjetFInal.modeles.Medicament;
-import com.example.ProjetFInal.modeles.Pharmacie;
-import com.example.ProjetFInal.modeles.Tag;
+import com.example.ProjetFInal.modeles.*;
 import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
 import com.example.ProjetFInal.services.PharmacieService;
@@ -84,8 +81,21 @@ public class MedicamentController {
              medicaments = medicamentService.getAll();
         }
 
+        HashSet<Pharmacie> pharmacies = new HashSet<>();
+        for (Medicament medicament :medicaments) {
+            if( medicament.getId_pharmacie() != null && medicament.getId_pharmacie().trim().length() != 0 ){
+                Optional<Pharmacie> pharma = this.pharmacieService.getById(medicament.getId_pharmacie());
+                pharma.ifPresent(pharmacies::add);
+                //medicaments.add(this.medicamentService.getById(sortie.getId_medoc()).get()) ;
+            }
+
+        }
+        ArrayList<Object> response = new ArrayList<>();
+        response.add(medicaments);
+        response.add(pharmacies);
+
         System.out.println(medicaments.size());
-        return new ResponseEntity<>(medicaments, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
