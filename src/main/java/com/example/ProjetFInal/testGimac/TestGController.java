@@ -1,14 +1,8 @@
 package com.example.ProjetFInal.testGimac;
 
 
-import com.example.ProjetFInal.modeles.Categories;
-import com.example.ProjetFInal.modeles.Medicament;
-import com.example.ProjetFInal.services.CatService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 
