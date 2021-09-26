@@ -25,6 +25,7 @@ public class TestGController {
             JSONObject json = new JSONObject(input.toString());
 
             String password = json.getString("password");
+            System.out.println(password);
             if(password.equals("<password>")){
                 System.out.println("--------------------------");
                 return new GimacError("invalid_grant","Bad credentials");
