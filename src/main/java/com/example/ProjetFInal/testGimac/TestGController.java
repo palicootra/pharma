@@ -21,6 +21,7 @@ public class TestGController {
     private Object create(@RequestBody Object input){
 
         System.out.println(input);
+        Object error = null;
         try {
             JSONObject json = new JSONObject(input.toString());
 
@@ -28,13 +29,16 @@ public class TestGController {
             System.out.println(password);
             if(password.compareTo("<password>")==0){
                 System.out.println("--------------------------");
-                return new GimacError("invalid_grant","Bad credentials");
+                 error = new GimacError("invalid_grant", "Bad credentials");
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        if(error!=null){
+            return error;
+        }
 
         return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
                 "bearer","61ecd5fc-53bb-447e-bcb4-8d8873e59876",120,"read");
