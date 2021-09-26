@@ -16,6 +16,7 @@ public class TestGController {
     @CrossOrigin(origins = "*")
     @PostMapping("/oauth/token")
     private Token create(@RequestBody Token input){
+        System.out.println(input);
 
 
         return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
