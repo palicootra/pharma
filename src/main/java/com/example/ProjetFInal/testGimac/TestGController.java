@@ -1,6 +1,9 @@
 package com.example.ProjetFInal.testGimac;
 
 
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,7 +19,19 @@ public class TestGController {
     @CrossOrigin(origins = "*")
     @PostMapping("/oauth/token")
     private Token create(@RequestBody Object input){
+
         System.out.println(input);
+        try {
+            JSONObject json = new JSONObject(input.toString());
+
+            String password = json.getString("password");
+            if(password=="<password>"){
+                return new GimacError("invalid_grant","Bad credentials");
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
