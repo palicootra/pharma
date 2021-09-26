@@ -58,7 +58,7 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                         "/Sortie/delete",
                         "/delete",
                         "/swagger-ui.html","/login",
-                        "/pp/*"
+                        "/pp/oauth/token"
                         )
                 .permitAll()
                 .anyRequest()
