@@ -45,7 +45,7 @@ public class TestGController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/payment/send")
-    private Object createTransaction(@RequestBody GimacTransaction transaction){
+    private GimacTransaction createTransaction(@RequestBody GimacTransaction transaction){
 
         System.out.println(transaction);
         String intent = transaction.getIntent();
