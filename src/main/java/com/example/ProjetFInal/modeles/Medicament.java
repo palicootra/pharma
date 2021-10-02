@@ -33,6 +33,7 @@ public class Medicament {
     private List<String> categories;
     private List<String> tag;
     private Date created_at;
+    private boolean doctor_only;
 
 
 }

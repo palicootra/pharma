@@ -5,8 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-
-
+import java.util.Objects;
 
 
 @RestController
@@ -41,6 +40,26 @@ public class TestGController {
 
         return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
                 "bearer","61ecd5fc-53bb-447e-bcb4-8d8873e59876",120,"read");
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/payment/send")
+    private Object createTransaction(@RequestBody GimacTransaction transaction){
+
+        System.out.println(transaction);
+        String intent = transaction.getIntent();
+        if(intent.equals("cardless_withdrawal")){
+            System.out.println("cardless_withdrawal");
+            transaction.setVouchercode("GIMAC945215625942016");
+            transaction.setState("PENDING");
+        }
+
+
+
+
+
+        return transaction ;
     }
 }
 
