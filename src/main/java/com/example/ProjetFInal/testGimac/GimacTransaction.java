@@ -16,8 +16,8 @@ import java.security.Timestamp;
 public class GimacTransaction {
         @Id
         private String id;
-        private Timestamp createtime;
-        private Timestamp expirytime;
+        private Long createtime;
+        private Long expirytime;
         private String sendermobile;
         private String receivermobile;
         private String intent;
