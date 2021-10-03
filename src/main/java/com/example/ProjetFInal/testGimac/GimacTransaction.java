@@ -26,7 +26,13 @@ public class GimacTransaction {
         private String vouchercode;
         private String tomember;
         private String frommember;
+        @Indexed(unique=true,sparse=true)
         private String issuertrxref;
+        @Indexed(unique=true,sparse=true)
+        private String aquirertrxref;
+        private String atm;
+        private String bank;
+
         private Float  amount;
         private String currency;
         private String description;
@@ -34,6 +40,7 @@ public class GimacTransaction {
         private String error;
         private String error_description;
         private Long validityduration;
+        private Long updatetime;
 
 
 

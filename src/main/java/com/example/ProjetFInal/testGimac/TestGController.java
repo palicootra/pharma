@@ -61,5 +61,26 @@ public class TestGController {
 
         return transaction ;
     }
+    @CrossOrigin(origins = "*")
+    @PostMapping("/payment/update")
+    private GimacTransaction updateTransaction(@RequestBody GimacTransaction transaction){
+
+        System.out.println(transaction);
+        String intent = transaction.getIntent();
+        if(intent.equals("cardless_withdrawal")){
+            System.out.println("cardless_withdrawal");
+            //transaction.setVouchercode("GIMAC945215625942016");
+            transaction.setIssuertrxref("KAKOTEL_28439016-2f89-4414-92b1-7c0b208e0fcc");
+            transaction.setSendermobile("+212522564541");
+            transaction.setTomember("PerfectPay");
+
+        }
+
+
+
+
+
+        return transaction ;
+    }
 }
 
