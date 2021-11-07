@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+import java.util.Random;
 
 
 @RestController
@@ -49,9 +50,10 @@ public class TestGController {
 
         System.out.println(transaction);
         String intent = transaction.getIntent();
+        int rand=new Random().nextInt(100000);
 
             System.out.println(transaction.getIntent());
-            transaction.setVouchercode("GIMAC945215625942016");
+            transaction.setVouchercode("GIMAC94521562594"+ rand);
             transaction.setState("PENDING");
 
 
