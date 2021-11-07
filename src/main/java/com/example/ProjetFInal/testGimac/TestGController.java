@@ -49,11 +49,11 @@ public class TestGController {
 
         System.out.println(transaction);
         String intent = transaction.getIntent();
-        if(intent.equals("cardless_withdrawal")){
-            System.out.println("cardless_withdrawal");
+
+            System.out.println(transaction.getIntent());
             transaction.setVouchercode("GIMAC945215625942016");
             transaction.setState("PENDING");
-        }
+
 
 
 
@@ -72,18 +72,13 @@ public class TestGController {
             //transaction.setVouchercode("GIMAC945215625942016");
 
             transaction.setSendermobile("+212522564541");
-            transaction.setTomember("PerfectPay");
+            //transaction.setTomember("PerfectPay");
             //transaction.setState("ACCEPTED");
             transaction.setCreatetime(1490109044L);
             transaction.setExpirytime(1490133333L);
             if(!transaction.getState().equals("CANCELLED") || !transaction.getState().equals("REVERSED")  ) transaction.setIssuertrxref("KAKOTEL_28439016-2f89-4414-92b1-7c0b208e0fcc");
 
-
         }
-
-
-
-
 
         return transaction ;
     }
