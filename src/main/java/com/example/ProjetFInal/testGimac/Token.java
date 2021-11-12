@@ -15,7 +15,4 @@ public class Token {
     String refresh_token;
     long expires_in;
     String scope;
-
-
-
 }

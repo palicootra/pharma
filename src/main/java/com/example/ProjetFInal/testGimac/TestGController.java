@@ -42,5 +42,18 @@ public class TestGController {
         return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
                 "bearer","61ecd5fc-53bb-447e-bcb4-8d8873e59876",120,"read");
     }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/cashdeposit")
+    private Object cashdeposit(@RequestBody Object input){
+        if(input!=null){
+            System.out.println(input);
+        }
+
+        JSONObject json = new JSONObject();
+
+        return new Token("42c93229-59b2-49fd-9366-69f5e7177712",
+                "bearer","61ecd5fc-53bb-447e-bcb4-8d8873e59876",120,"read");
+    }
 }
 
