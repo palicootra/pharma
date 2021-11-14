@@ -25,18 +25,19 @@ public class ResponseThread implements Runnable {
 
     @Override
     public void run() {
-        if (transaction.getError()!=null){
-            transaction.setState("REJECTED");
 
-        }else{
-            transaction.setState("ACCEPTED");
-        }
 
             // keep doing what this thread should do.
             System.out.println("ResponseThread");
 
             try {
                 Thread.sleep(10L * 1000L);
+                if (transaction.getError()!=null){
+                    transaction.setState("REJECTED");
+
+                }else{
+                    transaction.setState("ACCEPTED");
+                }
                 this.sendToProxyGimac(this.transaction);
             } catch (InterruptedException e) {
                 e.printStackTrace();
