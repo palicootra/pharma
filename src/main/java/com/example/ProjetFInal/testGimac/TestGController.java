@@ -65,8 +65,8 @@ public class TestGController {
     }
 
     private void manageThread(GimacTransaction transaction) {
-        switch(transaction.getIntent()) {
-            case "wallet_transfert":
+
+
                 if (transaction.getError()!=null){
                     transaction.setState("REJECTED");
 
@@ -85,14 +85,9 @@ public class TestGController {
                     e.printStackTrace();
                 }
 
-                //myRunnable.doStop();
-                break;
-            case "cardless_withdrawal":
+
                 // code block
-                break;
-            default:
-                // code block
-        }
+
 
         //return rejected transaction after 10 seconds
 
