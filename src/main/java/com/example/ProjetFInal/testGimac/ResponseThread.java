@@ -25,6 +25,12 @@ public class ResponseThread implements Runnable {
 
     @Override
     public void run() {
+        if (transaction.getError()!=null){
+            transaction.setState("REJECTED");
+
+        }else{
+            transaction.setState("ACCEPTED");
+        }
 
             // keep doing what this thread should do.
             System.out.println("ResponseThread");

@@ -68,12 +68,7 @@ public class TestGController {
     private void manageThread(GimacTransaction transaction) {
 
 
-                if (transaction.getError()!=null){
-                    transaction.setState("REJECTED");
 
-                }else{
-                    transaction.setState("ACCEPTED");
-                }
                 ResponseThread myRunnable = new ResponseThread(transaction);
 
                 Thread thread = new Thread(myRunnable);
