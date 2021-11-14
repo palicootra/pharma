@@ -15,8 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GimacTransaction {
-        @Id
-        private String id;
         private Float  amount;
         @Indexed(unique=true,sparse=true)
         private String aquirertrxref;

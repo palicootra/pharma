@@ -60,6 +60,7 @@ public class TestGController {
             transaction.setVouchercode("GIMAC"+ rand+rand2+rand3);
             transaction.setState("PENDING");
             this.manageThread(transaction);
+        System.out.println("****************** before return *******************");
 
         return transaction ;
     }
@@ -78,19 +79,6 @@ public class TestGController {
                 Thread thread = new Thread(myRunnable);
 
                 thread.start();
-
-                try {
-                    Thread.sleep(10L * 1000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-
-                // code block
-
-
-        //return rejected transaction after 10 seconds
-
 
     }
 

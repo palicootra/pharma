@@ -31,7 +31,7 @@ public class ResponseThread implements Runnable {
 
             try {
                 Thread.sleep(10L * 1000L);
-                this.sendToServer(this.transaction);
+                this.sendToProxyGimac(this.transaction);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -39,7 +39,7 @@ public class ResponseThread implements Runnable {
 
     }
 
-    public GimacTransaction sendToServer(GimacTransaction transaction){
+    public GimacTransaction sendToProxyGimac(GimacTransaction transaction){
 
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
@@ -64,6 +64,7 @@ public class ResponseThread implements Runnable {
 
                 //GimacTransaction transaction1 = gson.fromJson(responseData, GimacTransaction.class);
                 System.out.println(transaction.getVouchercode()+ " sent");
+
             }
 
             else return null;
