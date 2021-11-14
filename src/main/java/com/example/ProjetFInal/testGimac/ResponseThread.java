@@ -48,7 +48,7 @@ public class ResponseThread implements Runnable {
         System.out.println(stringBody);
         RequestBody body = RequestBody.create(mediaType, stringBody);
         Request request = new Request.Builder()
-                .url(Configuration.baseUrl+Configuration.updateLink)
+                .url(Configuration.serverBaseUrl+Configuration.updateLink)
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 //.addHeader("Authorization", "Bearer "+token.getAccess_token())
