@@ -59,9 +59,46 @@ public class TestGController {
         System.out.println(transaction.getIntent());
             transaction.setVouchercode("GIMAC"+ rand+rand2+rand3);
             transaction.setState("PENDING");
+            this.manageThread(transaction);
 
         return transaction ;
     }
+
+    private void manageThread(GimacTransaction transaction) {
+        switch(transaction.getIntent()) {
+            case "wallet_transfert":
+                if (transaction.getError()!=null){
+                    transaction.setState("REJECTED");
+
+                }else{
+                    transaction.setState("ACCEPTED");
+                }
+                ResponseThread myRunnable = new ResponseThread(transaction);
+
+                Thread thread = new Thread(myRunnable);
+
+                thread.start();
+
+                try {
+                    Thread.sleep(10L * 1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //myRunnable.doStop();
+                break;
+            case "cardless_withdrawal":
+                // code block
+                break;
+            default:
+                // code block
+        }
+
+        //return rejected transaction after 10 seconds
+
+
+    }
+
     @CrossOrigin(origins = "*")
     @PostMapping("/payment/update")
     private GimacTransaction updateTransaction(@RequestBody GimacTransaction transaction){
