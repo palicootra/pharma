@@ -1,6 +1,7 @@
 package com.example.ProjetFInal.testGimac;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 import com.example.ProjetFInal.testGimac.config.Configuration;
@@ -33,8 +34,10 @@ public class ResponseThread implements Runnable {
 
             try {
                 Thread.sleep(15L * 1000L);
-                if (transaction.getError()!=null){
+                if (Objects.equals(transaction.getWalletdestination(), "690000000")){
                     transaction.setState("REJECTED");
+                    transaction.setError("NOT FOUND");
+                    transaction.setError_description("this phone number does not exist");
 
                 }else{
                     transaction.setState("ACCEPTED");
