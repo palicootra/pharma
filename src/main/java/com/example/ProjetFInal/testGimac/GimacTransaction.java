@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.security.Timestamp;
 import java.util.List;
+import java.util.Random;
 
 @Document( "token")
 @Data
@@ -47,4 +48,10 @@ public class GimacTransaction {
         private List<String> states;
 
 
+        public void generateVoucherCode() {
+                int rand=new Random().nextInt(100000);
+                int rand2=new Random().nextInt(1000000);
+                int rand3=new Random().nextInt(10000000);
+                this.setVouchercode("GIMAC"+ rand+rand2+rand3);
+        }
 }

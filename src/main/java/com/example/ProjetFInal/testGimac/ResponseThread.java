@@ -1,6 +1,7 @@
 package com.example.ProjetFInal.testGimac;
 
 import java.io.IOException;
+import java.util.Random;
 
 import com.example.ProjetFInal.testGimac.config.Configuration;
 import com.squareup.okhttp.*;
@@ -31,13 +32,14 @@ public class ResponseThread implements Runnable {
             System.out.println("ResponseThread");
 
             try {
-                Thread.sleep(10L * 1000L);
+                Thread.sleep(15L * 1000L);
                 if (transaction.getError()!=null){
                     transaction.setState("REJECTED");
 
                 }else{
                     transaction.setState("ACCEPTED");
                 }
+                transaction.setAquirertrxref("ACQ"+new Random().nextInt(10000000));
                 this.sendToProxyGimac(this.transaction);
             } catch (InterruptedException e) {
                 e.printStackTrace();

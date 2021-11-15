@@ -51,13 +51,12 @@ public class TestGController {
 
         System.out.println(transaction);
         String intent = transaction.getIntent();
-        int rand=new Random().nextInt(100000);
-        int rand2=new Random().nextInt(1000000);
-        int rand3=new Random().nextInt(10000000);
+        transaction.generateVoucherCode();
+
 
 
         System.out.println(transaction.getIntent());
-            transaction.setVouchercode("GIMAC"+ rand+rand2+rand3);
+
             transaction.setState("PENDING");
             this.manageThread(transaction);
         System.out.println("****************** before return *******************");
