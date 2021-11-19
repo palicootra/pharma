@@ -34,15 +34,18 @@ public class ResponseThread implements Runnable {
 
             try {
                 Thread.sleep(15L * 1000L);
-                if (Objects.equals(transaction.getWalletdestination(), "690000000")){
-                    transaction.setState("REJECTED");
-                    transaction.setError("NOT FOUND");
-                    transaction.setError_description("this phone number does not exist");
+                int rand=new Random().nextInt(100000);
+
+                if (rand%2==0 || rand%3==0){
+                    transaction.setState("ACCEPTED");
+
 
                 }else{
-                    transaction.setState("ACCEPTED");
+                    transaction.setState("REJECTED");
+                    transaction.setError("RANDOM ERROR");
+                    transaction.setError_description("this is a random error");
                 }
-                transaction.setAquirertrxref("ACQ"+new Random().nextInt(10000000));
+                transaction.setAcquirertrxref("ACQ"+new Random().nextInt(10000000)+new Random().nextInt(9999999));
                 this.sendToProxyGimac(this.transaction);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -92,8 +95,8 @@ public class ResponseThread implements Runnable {
         if(transaction.getAmount()!=null){
             stringBody=stringBody+ "\"amount\":"+transaction.getAmount()+",";
         }
-        if(transaction.getAquirertrxref()!=null){
-            stringBody=stringBody+ "\"acquirerrxref\":\""+transaction.getAquirertrxref()+"\",";
+        if(transaction.getAcquirertrxref()!=null){
+            stringBody=stringBody+ "\"acquirerrxref\":\""+transaction.getAcquirertrxref()+"\",";
         }
         if(transaction.getAtm()!=null){
             stringBody=stringBody+ "\"atm\":\""+transaction.getAtm()+"\",";

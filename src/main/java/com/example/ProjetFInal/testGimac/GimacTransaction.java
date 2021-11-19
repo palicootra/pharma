@@ -18,7 +18,7 @@ import java.util.Random;
 public class GimacTransaction {
         private Float  amount;
         @Indexed(unique=true,sparse=true)
-        private String aquirertrxref;
+        private String acquirertrxref;
         private String atm;
         private String bank;
         private Long   createtime;
