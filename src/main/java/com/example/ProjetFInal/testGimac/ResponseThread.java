@@ -145,8 +145,8 @@ public class ResponseThread implements Runnable {
         if(transaction.getSendermobile()!=null){
             stringBody=stringBody+ "\"sendermobile\":\""+transaction.getSendermobile()+"\",";
         }
-        if(transaction.getTomember()!=null){
-            stringBody=stringBody+ "\"tomember\":\""+transaction.getTomember()+"\",";
+        if(transaction.getToMember()!=null){
+            stringBody=stringBody+ "\"tomember\":\""+transaction.getToMember()+"\",";
         }
         if(transaction.getUpdatetime()!=null){
             stringBody=stringBody+ "\"updatetime\":\""+transaction.getUpdatetime()+"\",";
