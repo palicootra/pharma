@@ -16,11 +16,17 @@ import java.util.Random;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GimacTransaction {
+        @Id
+        private String id;
         private Float  amount;
         @Indexed(unique=true,sparse=true)
         private String acquirertrxref;
         private String atm;
         private String bank;
+        private Map<String,String> billInquiryData;
+        private List<Map<String,String>> billList;
+        private String contractRef;
+        private String billRef;
         private Long   createtime;
         private String currency;
         private String description;
@@ -32,11 +38,14 @@ public class GimacTransaction {
         @Indexed(unique=true,sparse=true)
         private String issuertrxref;
         private String receivermobile;
-        private String receivercustomerdata;
-        private String sendercustomerdata;
+        private Map<String,Object> receivercustomerdata;
+        private Map<String,Object> sendercustomerdata;
         private String sendermobile;
+        private String serviceRef;
+        private String service;
+
         private String state;
-        private String tomember;
+        private String toMember;
         private Long   updatetime;
         private Long   validityduration;
         @Indexed(unique=true,sparse=true)
@@ -45,7 +54,11 @@ public class GimacTransaction {
         private String walletsource;
         private String direction;
         private String action;
-        private List<String> states;
+        //differents states of the transaction in order
+        private List <String> states;
+
+        private GimacTransaction response;
+
 
 
         public void generateVoucherCode() {
