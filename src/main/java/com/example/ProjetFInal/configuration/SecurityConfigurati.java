@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @Configuration
 public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserService userService;
 
@@ -51,12 +52,13 @@ public class SecurityConfigurati  extends WebSecurityConfigurerAdapter {
                         "/findMedoc","/medicament/findMedoc","/findAllMedoc","/medicament/findAllMedoc",
                         "/createUser","/medicament/addMedoc","/addMedoc","/register",
                         "/medicament/delete",
-                        "/pharmacie/delete",
+                        "/pharmacie/delete","/api/v2/api-docs",
                         "/lot/delete",
                         "/Sortie/delete",
-                        "/delete",
-                        "/swagger-ui.html","/login",
-                        "/pp/oauth/token","/pp/payment/send","/pp/payment/update"
+                        "/delete","/swagger-ui/**", "/v3/api-docs/**",
+                        "/swagger-ui","/api/swagger-ui.html",
+                        "/swagger-ui.html","/login","swagger-config",
+                        "/pp/oauth/token","/pp/payment/send","/pp/payment/update","/*","*","/*/*"
                         )
                 .permitAll()
                 .anyRequest()
