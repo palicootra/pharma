@@ -3,7 +3,6 @@ package com.example.ProjetFInal.controllers;
 import com.example.ProjetFInal.modeles.Lot;
 import com.example.ProjetFInal.modeles.Medicament;
 import com.example.ProjetFInal.modeles.Pharmacie;
-import com.example.ProjetFInal.modeles.Utilisateur;
 import com.example.ProjetFInal.services.LotService;
 import com.example.ProjetFInal.services.MedicamentService;
 import com.example.ProjetFInal.services.PharmacieService;
@@ -17,14 +16,14 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/lot")
-public class LoController {
+public class LotController {
     private final LotService lotService;
     private final MedicamentService medicamentService;
     private final PharmacieService pharmacieService;
 
     @Autowired
-    public LoController(LotService lotService, PharmacieService pharmacieService,
-                        MedicamentService medicamentService) {
+    public LotController(LotService lotService, PharmacieService pharmacieService,
+                         MedicamentService medicamentService) {
         this.lotService = lotService;
         this.medicamentService = medicamentService;
         this.pharmacieService = pharmacieService;
